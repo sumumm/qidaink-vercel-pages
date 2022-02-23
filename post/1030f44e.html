@@ -1,0 +1,427 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>【Butterfly】Butterfly自定义1-图片与滚动条 | 云与海</title><meta name="keywords" content="Hexo,Butterfly"><meta name="author" content="qidaink"><meta name="copyright" content="qidaink"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="摘要：&amp;emsp;&amp;emsp;本文主要是记录自己对Butterfly主题进行的自定义魔改，涉及到butterfly的图片和滚动条，我当时使用的主题是3.7.1版本，后续升级可能会有所不同，但是大都是大同小异。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Butterfly】Butterfly自定义1-图片与滚动条">
+<meta property="og:url" content="https://qidaink-vercel-pages.vercel.app/post/1030f44e.html">
+<meta property="og:site_name" content="云与海">
+<meta property="og:description" content="摘要：&amp;emsp;&amp;emsp;本文主要是记录自己对Butterfly主题进行的自定义魔改，涉及到butterfly的图片和滚动条，我当时使用的主题是3.7.1版本，后续升级可能会有所不同，但是大都是大同小异。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qidaink-vercel-pages.vercel.app/images/dafault-img.jpg">
+<meta property="article:published_time" content="2021-04-10T09:41:08.000Z">
+<meta property="article:modified_time" content="2022-02-23T04:18:49.482Z">
+<meta property="article:author" content="qidaink">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Butterfly">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qidaink-vercel-pages.vercel.app/images/dafault-img.jpg"><link rel="shortcut icon" href="/images/favicon32x32.ico"><link rel="canonical" href="https://qidaink-vercel-pages.vercel.app/post/1030f44e"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: qidaink","link":"链接: ","source":"来源: 云与海","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"top-center"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-02-23 12:18:49'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><link rel="stylesheet" href="/custom/css/custom.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_2482018_15wgmeyeygw.css"  media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><!-- Link Swiper's CSS -->
+                                              <link rel="stylesheet" href = "https://unpkg.com/swiper@6.5.9/swiper-bundle.css">
+                                              <link rel="stylesheet" href="https://unpkg.com/hexo-qidaink-swiper_bar/src/swiperbar.css">
+                                             <!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/images/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">34</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 云与海</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw far fa-list-alt"></i><span> 文章清单</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw fas fa-user-friends"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/guestbook"><i class="fa-fw fas fa-edit"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-heart"></i><span> 关于我</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/site/"><i class="fa-fw fas fa-atlas"></i><span> 关于本站</span></a></li><li><a class="site-page child" href="/about/mine/"><i class="fa-fw fas fa-fan"></i><span> 关于自己</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/dafault-img.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">云与海</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 云与海</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw far fa-list-alt"></i><span> 文章清单</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw fas fa-user-friends"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/guestbook"><i class="fa-fw fas fa-edit"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-heart"></i><span> 关于我</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/site/"><i class="fa-fw fas fa-atlas"></i><span> 关于本站</span></a></li><li><a class="site-page child" href="/about/mine/"><i class="fa-fw fas fa-fan"></i><span> 关于自己</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【Butterfly】Butterfly自定义1-图片与滚动条</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-04-10T09:41:08.000Z" title="发表于 2021-04-10 17:41:08">2021-04-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-02-23T04:18:49.482Z" title="更新于 2022-02-23 12:18:49">2022-02-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Hexo/">Hexo</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【Butterfly】Butterfly自定义1-图片与滚动条"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>摘要：<br>&emsp;&emsp;本文主要是记录自己对<code>Butterfly</code>主题进行的自定义魔改，涉及到<code>butterfly</code>的图片和滚动条，我当时使用的主题是<code>3.7.1</code>版本，后续升级可能会有所不同，但是大都是大同小异。</p>
+<span id="more"></span>
+
+<h2 id="1-butterfly的介绍和安装"><a href="#1-butterfly的介绍和安装" class="headerlink" title="1.butterfly的介绍和安装"></a><font size=3>1.<code>butterfly</code>的介绍和安装</font></h2><ul>
+<li><code>butterfly</code>介绍</li>
+</ul>
+<p>&emsp;&emsp;<code>butterfly</code>主题是一个比较好看的主题，具体情况可以点击此处查看<a href="https://butterfly.js.org/" target="_blank">官方文档</a>。它内置了许多效果和脚本，如果自己要求不是特别多的话，只在主题配置文件中进行配置，就可以得到一个比较不错的博客站点了，这个主题个人感觉比较适合我这样的小白，哈哈。它内部的框架模板都是用的<code>pug</code>模板，对于我一个搞硬件的人来说，这个语法我还是不是很熟悉，可以从这里查看它的<a href="https://pugjs.org/zh-cn/api/getting-started.html" target="_blank">中文官方文档</a>来学习基础的语法，多看一下总没啥坏处，可以大致了解一下内部的模板文件大概都是用来干嘛的，后边魔改涉及源码的，也能自己解决一部分问题。</p>
+<ul>
+<li><code>butterfly</code>安装</li>
+</ul>
+<p>&emsp;&emsp;<code>butterfly</code>官方文档提供了三种安装方式，可以根据自己的需要下载安装，通过<code>git</code>下载的时候可以选<code>master</code>分支或者<code>dev</code>分支，仅以还是使用<code>master</code>吧，这个是稳定版发布的分支。</p>
+<div class="tabs" id="unique-name"><ul class="nav-tabs"><li class="tab active"><button type="button" data-href="#unique-name-1">Git安装(Github)</button></li><li class="tab"><button type="button" data-href="#unique-name-2">Git安装(Gitee)</button></li><li class="tab"><button type="button" data-href="#unique-name-3">npm安装</button></li></ul><div class="tab-contents"><div class="tab-item-content active" id="unique-name-1"><figure class="highlight shell"><figcaption><span>shell</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="unique-name-2"><figure class="highlight shell"><figcaption><span>shell</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone -b master https://gitee.com/iamjerryw/hexo-theme-butterfly.git themes/butterfly</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="unique-name-3"><figure class="highlight shell"><figcaption><span>shell</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 安装命令</span></span><br><span class="line">npm i hexo-theme-butterfly</span><br><span class="line"><span class="meta">#</span><span class="bash"> 升级命令</span></span><br><span class="line">npm update hexo-theme-butterfly</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div></div>
+
+<div class="note warning flat"><p>&emsp;&emsp;<code>Hexo</code>本身是不带<code>pug</code>模板渲染器的，安装完主题后一定要安装这两个插件。</p>
+<figure class="highlight shell"><figcaption><span>shell</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-renderer-pug hexo-renderer-stylus --save</span><br></pre></td></tr></table></figure></div>
+
+<p>&emsp;&emsp;安装完毕之后，在站点配置文件<code>[blogRoot]/_config.yml</code>中配置<code>theme: butterfly</code>就可以启用butterfly主题了，启用之后，可以按照官方文档进行配置使用，说明文档是中文的，而且非常的详细。</p>
+<h2 id="2-butterfly一图流实现"><a href="#2-butterfly一图流实现" class="headerlink" title="2.butterfly一图流实现"></a><font size=3>2.<code>butterfly</code>一图流实现</font></h2><p>&emsp;&emsp;按照官方的教程进行配置之后，发现已经可以实现大部分的功能了，但是在按照教程配置的时候我们会遇到图片的配置选项部分，这个时候看个人的喜好了，我自己呢是不太喜欢那么多图片的，背景只有一张图似乎更符合我的希望，而且，那么多涨图片，对于懒惰的我来说，一个一个配置真的太难了，在这个时候，看到了一个大佬的博客的一篇文章，所以就按照这样的方式，实现了整个页面共用一张图的效果。</p>
+<div class="note info flat"><p>&emsp;&emsp;参考教程</p>
+<table>
+  <tr>
+    <td align="center">博客名称</td>
+    <td align="center">教程原帖</td>
+  </tr>
+  <tr>
+    <td align="center">Akilar の糖果屋</td>
+    <td align="left"><a href="https://akilar.top/posts/ebf20e02/" target="_blank" style="color:#0593d3">Custom Beautify</a> </td>
+  </tr>
+</table></div>
+
+<ul>
+<li>新建<code>mine.css</code>文件</li>
+</ul>
+<p>&emsp;&emsp;为了尽量小的修改源码，在<code>[blogRoot]/source/</code>文件夹下，自己随便新建一个文件夹放<code>css</code>文件就好啦，注意不要把<code>mine.css</code>文件放在<code>_data</code>文件下，不然在引用的时候会有问题，文件新建完毕之后添加以下代码。</p>
+<div class="note info no-icon 点击查看修改部分 flat"><figure class="highlight css"><figcaption><span>css</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*--------------------------------------------------------------------------------------*/</span></span><br><span class="line"><span class="comment">/* 背景顶图透明，公用一张图样式 */</span></span><br><span class="line"><span class="comment">/* 顶图透明 */</span></span><br><span class="line"><span class="selector-id">#page-header</span>&#123;</span><br><span class="line">  <span class="attribute">background</span>: transparent<span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* top-img黑色透明玻璃效果移除，我自己是没有加的，毕竟在文章详情页面，这样会更有区分度一点 */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">#page-header.post-bg:before &#123;</span></span><br><span class="line"><span class="comment">  background-color: transparent!important;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 夜间模式伪类遮罩层透明 */</span></span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span></span><br><span class="line"><span class="selector-id">#footer</span><span class="selector-pseudo">::before</span>&#123;</span><br><span class="line">  <span class="attribute">background</span>: transparent<span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span></span><br><span class="line"><span class="selector-id">#page-header</span><span class="selector-pseudo">::before</span>&#123;</span><br><span class="line">  <span class="attribute">background</span>: transparent<span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*--------------------------------------------------------------------------------------*/</span></span><br><span class="line"><span class="comment">/* 页脚样式 */</span></span><br><span class="line"><span class="selector-id">#footer</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: transparent <span class="meta">!important</span>;   <span class="comment">/* 页脚设置为透明 */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 页脚字体颜色 */</span> </span><br><span class="line"><span class="selector-id">#footer-wrap</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#3f3f3f</span>;                     <span class="comment">/* 页脚字体颜色设置为灰色 */</span>              </span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">2rem</span> <span class="number">1rem</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>引用<code>mine.css</code>文件</li>
+</ul>
+<p>&emsp;&emsp;在<code>butterfly</code>主题配置文件中有以下部分，将相应的链接按照教程中的引用格式进行引用，就可以将自己定义的样式和脚本文件引入到模板文件中。</p>
+<figure class="highlight yaml"><figcaption><span>yaml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Inject</span></span><br><span class="line"><span class="attr">inject:</span></span><br><span class="line">  <span class="attr">head:</span>                           <span class="comment"># 插入代码到头部 &lt;/head&gt; 之前</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;/custom/mycss/mine.css&quot;&gt;</span></span><br><span class="line">  <span class="attr">bottom:</span>                         <span class="comment"># 插入代码到底部 &lt;/body&gt; 之前</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;script</span> <span class="string">src=&quot;/custom/myjs/xxx.js&quot;&gt;&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<div class="note info no-icon 点击查看注入位置及格式 flat"><div class="tabs" id="inject-unique-name"><ul class="nav-tabs"><li class="tab active"><button type="button" data-href="#inject-unique-name-1">head</button></li><li class="tab"><button type="button" data-href="#inject-unique-name-2">bottom</button></li></ul><div class="tab-contents"><div class="tab-item-content active" id="inject-unique-name-1"><figure class="highlight plain"><figcaption><span>pug [blogRoot]/themes/butterfly/layout/includes/head.pug</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!&#x3D;fragment_cache(&#39;injectHead&#39;, function()&#123;return injectHtml(theme.inject.head)&#125;)</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="inject-unique-name-2"><figure class="highlight plain"><figcaption><span>pug [blogRoot]/themes/butterfly/layout/includes/additional-js.pug</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!&#x3D;fragment_cache(&#39;injectBottom&#39;, function()&#123;return injectHtml(theme.inject.bottom)&#125;)</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div></div>
+</div>
+
+<p>&emsp;&emsp;添加完引用之后，<code>hexo cl &amp;&amp; hexo g &amp;&amp; hexo s</code>就可以看到顶部、页脚等已经变成了透明，若是之前设置了背景图，就会发现此时顶部图、背景图、页脚等都是同一张图片，这就达到了我们的目的，在修改页脚透明的时候记得修改一下字体颜色，要与自己的背景图适配一下，否则可能会出现子不清晰的情况。</p>
+<h2 id="3-butterfly中的fancybox"><a href="#3-butterfly中的fancybox" class="headerlink" title="3.butterfly中的fancybox"></a><font size=3>3.<code>butterfly</code>中的<code>fancybox</code></font></h2><p>&emsp;&emsp;与<code>NexT</code>相同，内置了<code>fancybox</code>的脚本，我们只需要设置<code>[blogRoot]/_config.butterfly.yml</code>中的<code>fancybox: true</code>就可以启用了，但是有一个和<code>NexT</code>相同的问题，就是关闭图片预览的时候滚动条出现的时候有问题，但是与<code>NexT</code>不同的是，<code>butterfly</code>的整个页面不会抖动，只有滚动条部分会向左偏移一下，如果有背景图的话，就会有一个背景图缩放的现象出现。<br><br>&emsp;&emsp;那么可不可以像<code>NexT</code>中的处理方式那样写一个脚本不修改源码从而解决整个问题呢？答案是不可以，至少我试了没啥用，所以对于小白的我来说，就只有改源码喽。<br><br>&emsp;&emsp;打开<code>butterfly</code>的源码，找到配置<code>fancybox</code>的脚本文件<code>main.js</code>，找到以下部分代码：</p>
+<figure class="highlight javascript"><figcaption><span>javascript [blogRoot]/themes/butterfly/source/js/main.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> addFancybox = <span class="function"><span class="keyword">function</span> (<span class="params">ele</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> runFancybox = <span class="function">(<span class="params">ele</span>) =&gt;</span> &#123;</span><br><span class="line">    ele.each(<span class="function"><span class="keyword">function</span> (<span class="params">i, o</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">const</span> $this = $(o)</span><br><span class="line">      <span class="keyword">const</span> lazyloadSrc = $this.attr(<span class="string">&#x27;data-lazy-src&#x27;</span>) || $this.attr(<span class="string">&#x27;src&#x27;</span>)</span><br><span class="line">      <span class="keyword">const</span> dataCaption = $this.attr(<span class="string">&#x27;alt&#x27;</span>) || <span class="string">&#x27;&#x27;</span></span><br><span class="line">      $this.wrap(<span class="string">`&lt;a href=&quot;<span class="subst">$&#123;lazyloadSrc&#125;</span>&quot; data-fancybox=&quot;group&quot; data-caption=&quot;<span class="subst">$&#123;dataCaption&#125;</span>&quot; class=&quot;fancybox&quot;&gt;&lt;/a&gt;`</span>)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    $().fancybox(&#123;</span><br><span class="line">      selector: <span class="string">&#x27;[data-fancybox]&#x27;</span>,</span><br><span class="line">      loop: <span class="literal">true</span>,</span><br><span class="line">      transitionEffect: <span class="string">&#x27;slide&#x27;</span>,</span><br><span class="line">      protect: <span class="literal">true</span>,</span><br><span class="line">      buttons: [<span class="string">&#x27;slideShow&#x27;</span>, <span class="string">&#x27;fullScreen&#x27;</span>, <span class="string">&#x27;thumbs&#x27;</span>, <span class="string">&#x27;close&#x27;</span>],</span><br><span class="line">      hash: <span class="literal">false</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;其中<code>$().fancybox()</code>中的部分配置了<code>fancybox</code>的默认参数部分，所以在此函数中添加<code>hideScrollbar:false  //不隐藏原先自带的滚动条</code>参数，就可以使滚动条一直显示啦，背景图片就不会有缩放的情况产生了，如果需要解决的话，就稍微修改下源码就可以，觉得无所谓的也可以不管它。</p>
+<h2 id="4-滚动条美化"><a href="#4-滚动条美化" class="headerlink" title="4.滚动条美化"></a><font size=3>4.滚动条美化</font></h2><div class="note info flat"><p>&emsp;&emsp;参考教程</p>
+<table>
+  <tr>
+    <td align="center">博客名称</td>
+    <td align="center">教程原帖</td>
+  </tr>
+  <tr>
+    <td align="center">Lete乐特</td>
+    <td align="left"><a href="https://blog.lete114.top/article/Butterfly-config.html#滚动条" target="_blank" style="color:#0593d3">Butterfly主题美化-无修改源码</a> </td>
+  </tr>
+</table></div>
+
+<p>&emsp;&emsp;在<code>mine.css</code>文件中添加以下代码即可实现滚动条的美化</p>
+<figure class="highlight css"><figcaption><span>css</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 滚动条 */</span></span><br><span class="line"></span><br><span class="line">::-webkit-scrollbar &#123;</span><br><span class="line">    width: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">::-webkit-scrollbar-thumb &#123;</span><br><span class="line">    background-color: <span class="number">#e58a8a</span>;</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">-webkit-linear-gradient</span>( <span class="number">45deg</span>, <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.4</span>) <span class="number">25%</span>, transparent <span class="number">25%</span>, transparent <span class="number">50%</span>, <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.4</span>) <span class="number">50%</span>, <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.4</span>) <span class="number">75%</span>, transparent <span class="number">75%</span>, transparent);</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">2em</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">::-webkit-scrollbar-corner &#123;</span><br><span class="line">    background-color: transparent;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">::-moz-selection &#123;</span><br><span class="line">    color: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#e58a8a</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;效果预览：</p>
+<div align="center">
+  <img src="https://gitee.com/qidaink/qidaink-images/raw/master/Hexo/Butterfly/001scroll%20bar.png">
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">qidaink</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://qidaink-vercel-pages.vercel.app/post/1030f44e.html">https://qidaink-vercel-pages.vercel.app/post/1030f44e.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://qidaink-vercel-pages.vercel.app" target="_blank">云与海</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Hexo/">Hexo</a><a class="post-meta__tags" href="/tags/Butterfly/">Butterfly</a></div><div class="post_share"><div class="social-share" data-image="/images/dafault-img.jpg" data-sites="wechat,qq,weibo"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/myqq.jpg" target="_blank"><img class="post-qr-code-img" src="/images/myqq.jpg" alt="我的QQ"/></a><div class="post-qr-code-desc">我的QQ</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/e938652.html"><img class="prev-cover" src="/images/dafault-img.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【Python】Python基础1-OS模块函数</div></div></a></div><div class="next-post pull-right"><a href="/post/db25055a.html"><img class="next-cover" src="/images/dafault-img.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【NexT】NexT中的fancybox</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/post/34ca3fb6.html" title="【Hexo】Hexo的安装使用"><img class="cover" src="/images/dafault-img.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-23</div><div class="title">【Hexo】Hexo的安装使用</div></div></a></div><div><a href="/post/db25055a.html" title="【NexT】NexT中的fancybox"><img class="cover" src="/images/dafault-img.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-10</div><div class="title">【NexT】NexT中的fancybox</div></div></a></div><div><a href="/post/b14a1b18.html" title="【NexT】NexT自定义记录-2"><img class="cover" src="/images/dafault-img.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-23</div><div class="title">【NexT】NexT自定义记录-2</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Waline</span><span class="switch-btn"></span><span class="second-comment">Twikoo</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">qidaink</div><div class="author-info__description">但愿人长久，千里共婵娟</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">34</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/qidaink"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/qidaink" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/qq_38231279" target="_blank" title="CSDN"><i class="fas fa-copyright"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到云与海的博客！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-butterfly%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%AE%89%E8%A3%85"><span class="toc-text">1.butterfly的介绍和安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-butterfly%E4%B8%80%E5%9B%BE%E6%B5%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">2.butterfly一图流实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-butterfly%E4%B8%AD%E7%9A%84fancybox"><span class="toc-text">3.butterfly中的fancybox</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%BB%9A%E5%8A%A8%E6%9D%A1%E7%BE%8E%E5%8C%96"><span class="toc-text">4.滚动条美化</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/9720d703.html" title="【Shell】Shell命令-sed"><img src="/images/dafault-img.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【Shell】Shell命令-sed"/></a><div class="content"><a class="title" href="/post/9720d703.html" title="【Shell】Shell命令-sed">【Shell】Shell命令-sed</a><time datetime="2022-02-21T00:22:02.000Z" title="发表于 2022-02-21 08:22:02">2022-02-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/4bc18fdf.html" title="【Ubuntu】PPA介绍"><img src="/images/dafault-img.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【Ubuntu】PPA介绍"/></a><div class="content"><a class="title" href="/post/4bc18fdf.html" title="【Ubuntu】PPA介绍">【Ubuntu】PPA介绍</a><time datetime="2022-02-19T08:29:55.000Z" title="发表于 2022-02-19 16:29:55">2022-02-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/e0f393dc.html" title="【Shell】LV2-03-Shell脚本编程"><img src="/images/dafault-img.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【Shell】LV2-03-Shell脚本编程"/></a><div class="content"><a class="title" href="/post/e0f393dc.html" title="【Shell】LV2-03-Shell脚本编程">【Shell】LV2-03-Shell脚本编程</a><time datetime="2022-02-18T00:22:02.000Z" title="发表于 2022-02-18 08:22:02">2022-02-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/84847102.html" title="【C】LV1-06-C语言-6指针"><img src="/images/dafault-img.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【C】LV1-06-C语言-6指针"/></a><div class="content"><a class="title" href="/post/84847102.html" title="【C】LV1-06-C语言-6指针">【C】LV1-06-C语言-6指针</a><time datetime="2022-01-15T08:29:55.000Z" title="发表于 2022-01-15 16:29:55">2022-01-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/582937ae.html" title="【C】LV1-05-C语言-5数组与字符串"><img src="/images/dafault-img.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【C】LV1-05-C语言-5数组与字符串"/></a><div class="content"><a class="title" href="/post/582937ae.html" title="【C】LV1-05-C语言-5数组与字符串">【C】LV1-05-C语言-5数组与字符串</a><time datetime="2022-01-14T08:29:55.000Z" title="发表于 2022-01-14 16:29:55">2022-01-14</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2017 - 2022 By qidaink</div><div class="footer_custom_text">但愿人长久，千里共婵娟！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadWaline () {
+  function initWaline () {
+    const waline = new Waline(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://qidaink-blog-comment.vercel.app/',
+      avatar: 'identicon',
+      path: location.pathname,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/',
+      emojiMaps: "",
+      visitor: false
+    }, {"lang":"zh-CN","pageSize":5,"requiredFields":["nick","mail"],"anonymous":null,"placeholder":"(ฅ>ω<*ฅ)欢迎大家评论呀!","avatarCDN":"https://sdn.geekzu.org/avatar/","langMode":{"admin":"可爱的博主","nick":"昵称(必填)","mail":"邮箱(必填)","link":"网址(选填)","sofa":"这里冷冷清清的，快来留下你的脚印吧(ฅ>ω<*ฅ)"}}))
+  }
+
+  if (typeof Waline === 'function') initWaline() 
+  else getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js').then(initWaline)
+}
+
+if ('Waline' === 'Waline' || !false) {
+  if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'qidaink-twikoo-0g5tijvr7bf0f59e',
+      region: ''
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'qidaink-twikoo-0g5tijvr7bf0f59e',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Waline' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="7274703654" data-server="tencent" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted> </div><script defer src = "https://unpkg.com/hexo-qidaink-live2d@1.1.1/live2d-widget/autoload.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="//code.tidio.co/abi9wtgmqlz8ckqgp56ysmntgiob4vfs.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script>
+    // 全局变量声明区域
+    var fdata = {
+      apiurl: 'https://hexo-circle-of-friends-rose.vercel.app/all',
+      initnumber: 20, //【可选】页面初始化展示文章数量
+      stepnumber: 10, //【可选】每次加载增加的篇数
+      error_img: 'https://cdn.jsdelivr.net/npm/akilar-candyassets/image/404.gif' //【可选，头像图片加载失败时的默认头像】
+    }
+    //存入本地存储
+    localStorage.setItem("fdatalist",JSON.stringify(fdata))
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/hexo-filter-fcircle/assets/js/fetch.min.js"></script> <script data-pjax>
+                            if(document.getElementById('recent-posts') && location.pathname =='/'){
+                                var parent = document.getElementById('recent-posts');
+                                var child = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms"></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+                                console.log('swiper-bar加载成功');
+                                parent.insertAdjacentHTML("afterbegin",child);
+                                <!-- Inside a callback or Promise that runs after new DOM content has been inserted -->
+                                <!-- 以下语句是为了适配 pjax，由于插入 html 片段发生在 pjax 初始化之后，所以此链接中的 a 标签跳转会导致全局页面刷新，而以下的 refresh() 函数可以很好的解决这个问题 -->
+                                var newContent = document.querySelector("#recent-posts");
+                                pjax.refresh(newContent);
+                            }
+                        </script>
+                        <!-- Swiper JS -->
+                        <script data-pjax src = "https://unpkg.com/swiper@6.5.9/swiper-bundle.js"></script>
+                        <!-- Initialize Swiper -->
+                        <script data-pjax src = "https://unpkg.com/hexo-qidaink-swiper_bar/src/swiper-init.js"></script>
+                        <style></style><!-- hexo injector body_end end --></body></html>

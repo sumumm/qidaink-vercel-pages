@@ -1,0 +1,94 @@
+/*=======================================================================================
+* 文件名称：custom.css
+* 文件说明：自定义样式文件
+* 注入位置：[root]/themes/butterfly/layout/includes/head.pug
+* 注入格式：!=fragment_cache('injectHead', function(){return injectHtml(theme.inject.head)})
+* 引入文件：[root]/_config.butterfly.yml
+* 引入格式：<link rel="stylesheet" href="/custom/css/custom.css"> 
+=======================================================================================*/
+
+/*--------------------------------------------------------------------------------------*/
+/* aplayer音乐播放器 */
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+  left: -66px !important;  /* 默认情况下缩进左侧66px，只留一点箭头部分 */
+}
+  
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+  left: 0 !important;      /* 鼠标悬停是左侧缩进归零，完全显示按钮 */
+}
+
+/*--------------------------------------------------------------------------------------*/
+/* 背景顶图透明，全局一张图样式 */
+/* 头图透明 */
+#page-header{
+  background: transparent!important;
+}
+
+/* top-img黑色透明玻璃效果移除，除非执着于完全一图流或者背景图对比色明显,不建议加 */
+/*
+#page-header.post-bg:before {
+  background-color: transparent!important;
+}
+*/
+
+/* 夜间模式伪类遮罩层透明 */
+[data-theme="dark"]
+#footer::before{
+  background: transparent!important;
+}
+[data-theme="dark"]
+#page-header::before{
+  background: transparent!important;
+}
+
+
+/*--------------------------------------------------------------------------------------*/
+/* 页脚样式 */
+#footer 
+{
+  background: transparent !important;   /* 页脚设置为透明 */
+}
+
+#footer-wrap 
+{
+  position: relative;
+  color: #ffffff;                     /* 页脚字体颜色设置为灰色 */              
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+/*--------------------------------------------------------------------------------------*/
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(73, 177, 245, 0.2);
+  border-radius: 2em;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #49b1f5;
+  background-image: -webkit-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.4) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.4) 75%,
+    transparent 75%,
+    transparent
+  );
+  border-radius: 2em;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+::-moz-selection {
+  color: #fff;
+  background-color: #49b1f5;
+}

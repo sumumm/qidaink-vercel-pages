@@ -1,0 +1,1345 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>【Git】Git-02-Git基本命令与使用 | 云与海</title><meta name="keywords" content="Git"><meta name="author" content="qidaink"><meta name="copyright" content="qidaink"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="摘要：&amp;emsp;&amp;emsp;本文主要介绍Git中的基本命令以及beyond compare插件的介绍。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Git】Git-02-Git基本命令与使用">
+<meta property="og:url" content="https://qidaink-vercel-pages.vercel.app/post/27f20136.html">
+<meta property="og:site_name" content="云与海">
+<meta property="og:description" content="摘要：&amp;emsp;&amp;emsp;本文主要介绍Git中的基本命令以及beyond compare插件的介绍。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qidaink-vercel-pages.vercel.app/images/dafault-img.jpg">
+<meta property="article:published_time" content="2021-02-21T12:00:00.000Z">
+<meta property="article:modified_time" content="2022-02-23T04:18:49.482Z">
+<meta property="article:author" content="qidaink">
+<meta property="article:tag" content="Git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qidaink-vercel-pages.vercel.app/images/dafault-img.jpg"><link rel="shortcut icon" href="/images/favicon32x32.ico"><link rel="canonical" href="https://qidaink-vercel-pages.vercel.app/post/27f20136"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: qidaink","link":"链接: ","source":"来源: 云与海","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"top-center"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-02-23 12:18:49'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><link rel="stylesheet" href="/custom/css/custom.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_2482018_15wgmeyeygw.css"  media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><!-- Link Swiper's CSS -->
+                                              <link rel="stylesheet" href = "https://unpkg.com/swiper@6.5.9/swiper-bundle.css">
+                                              <link rel="stylesheet" href="https://unpkg.com/hexo-qidaink-swiper_bar/src/swiperbar.css">
+                                             <!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/images/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">34</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 云与海</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw far fa-list-alt"></i><span> 文章清单</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw fas fa-user-friends"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/guestbook"><i class="fa-fw fas fa-edit"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-heart"></i><span> 关于我</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/site/"><i class="fa-fw fas fa-atlas"></i><span> 关于本站</span></a></li><li><a class="site-page child" href="/about/mine/"><i class="fa-fw fas fa-fan"></i><span> 关于自己</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/dafault-img.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">云与海</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 云与海</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw far fa-list-alt"></i><span> 文章清单</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw fas fa-user-friends"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/guestbook"><i class="fa-fw fas fa-edit"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-heart"></i><span> 关于我</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/site/"><i class="fa-fw fas fa-atlas"></i><span> 关于本站</span></a></li><li><a class="site-page child" href="/about/mine/"><i class="fa-fw fas fa-fan"></i><span> 关于自己</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【Git】Git-02-Git基本命令与使用</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-21T12:00:00.000Z" title="发表于 2021-02-21 20:00:00">2021-02-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-02-23T04:18:49.482Z" title="更新于 2022-02-23 12:18:49">2022-02-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Ubuntu/">Ubuntu</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">10.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>37分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【Git】Git-02-Git基本命令与使用"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>摘要：<br>&emsp;&emsp;本文主要介绍Git中的基本命令以及<code>beyond compare</code>插件的介绍。</p>
+<span id="more"></span>
+
+<p>【说明】:</p>
+<ul>
+<li><p>所用环境<code>VMwareWorkstation16.0 + Ubuntu18.04.6 + Win10</code></p>
+</li>
+<li><p>官网命令手册：<a target="_blank" rel="noopener" href="https://git-scm.com/docs"><code>Reference</code></a></p>
+</li>
+<li><p>【参考资料】</p>
+<table>
+    <tr>
+        <td align="center">名称</td>
+        <td align="center">网址</td>
+    </tr>
+    <tr>
+        <td align="center">官网命令手册</td>
+        <td align="left"><a target="_blank" rel="noopener" href="https://git-scm.com/docs">Reference</a></td>
+    </tr>
+    <tr>
+        <td align="center">猴子都能懂的Git入门</td>
+        <td align="left"><a target="_blank" rel="noopener" href="https://backlog.com/git-tutorial/cn/">https://backlog.com/git-tutorial/cn/</a></td>
+    </tr>
+    <tr>
+        <td align="center">GitHub中文社区
+</td>
+        <td align="left"><a target="_blank" rel="noopener" href="https://www.githubs.cn/post/git-tutorial">Git及GitHub教程</a></td>
+    </tr>
+</table></li>
+</ul>
+<h1 id="一、Git配置命令"><a href="#一、Git配置命令" class="headerlink" title="一、Git配置命令"></a><font size=3>一、<code>Git</code>配置命令</font></h1><h2 id="1-查看版本"><a href="#1-查看版本" class="headerlink" title=" 1.查看版本"></a><font size=3> 1.查看版本</font></h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-设置用户信息"><a href="#2-设置用户信息" class="headerlink" title=" 2.设置用户信息"></a><font size=3> 2.设置用户信息</font></h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;John Doe&quot;</span><br><span class="line">git config --global user.email johndoe@example.com</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;安装完 <code>Git</code> 之后，要做的第一件事就是设置你的<strong>用户名</strong>和<strong>邮件地址</strong>。 这一点很重要，因为每一个 <code>Git</code> 提交都会使用这些信息，它们会写入到每一次提交中，<strong>不可更改</strong>。</p>
+<p>&emsp;&emsp;如果使用了 <code>--global</code> 选项，那么该命令只需要运行一次，因为之后无论在该系统上做任何事<br>情， <code>Git</code> 都会使用那些信息。 当想针对特定项目使用不同的用户名称与邮件地址时，可以在那个项目目录下运行没有 <code>--global</code> 选项的命令来配置。</p>
+<h2 id="3-设置文本编辑器"><a href="#3-设置文本编辑器" class="headerlink" title="3.设置文本编辑器"></a><font size=3>3.设置文本编辑器</font></h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.editor emacs # Vim、Emacs 和 Notepad++ 都是流行的文本编辑器</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>Windows</code> 系统上，如果想要使用别的文本编辑器，那么必须指定<strong>可执行文件</strong>的<strong>完整路径</strong>。</p>
+<h2 id="4-检查配置信息"><a href="#4-检查配置信息" class="headerlink" title="4.检查配置信息"></a><font size=3>4.检查配置信息</font></h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --list  # 列出所有 Git 当时能找到的配置</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;此命令运行后可能会看到重复的变量名，因为 <code>Git</code> 会从不同的文件中读取同一个配置（例如：<code>/etc/gitconfig</code> 与<code>~/.gitconfig</code>）。 这种情况下，<code>Git</code> 会使用它找到的每一个变量的最后一个配置。若想检查某一项配置信息，则可以：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config &lt;key&gt; # 获取某一项配置信息</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-对LF和CRLF的处理"><a href="#5-对LF和CRLF的处理" class="headerlink" title="5.对LF和CRLF的处理"></a><font size=3>5.对<code>LF</code>和<code>CRLF</code>的处理</font></h2><p>&emsp;&emsp;<code>Linux</code>系统和<code>Windows</code>系统下的换行符不一样，<code>Linux</code>是<code>\n</code>，即<code>LF</code>，<code>Windows</code>下面是<code>\r\n</code>，即<code>CRLF</code>，<code>git</code>在维护版本库的时候统一使用的是<code>LF</code>。所以当文档跨平台进行编辑的时候，换行符就会产生差别，在不同平台编辑过得文件在进行<code>commit</code>的时候也会有相应的换行符警告。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LF will be replaced by CRLF in .......</span><br></pre></td></tr></table></figure>
+
+<p>那么怎么处理呢？这样就可以了（不过这样似乎只是治标不治本，仅仅是忽略了检查，要是文章的话还好，要是代码的话，有可能会因为换行符而出现问题，暂时先这样解决）。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.autocrlf false</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-查看配置及配置所在文件"><a href="#6-查看配置及配置所在文件" class="headerlink" title=" 6.查看配置及配置所在文件"></a><font size=3> 6.查看配置及配置所在文件</font></h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --list --show-origin</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;该命令可以查询 <code>Git</code> 中该变量的 原始 值，它会告诉我们哪一个配置文件最后设置了该值。</p>
+<h2 id="7-获取帮助"><a href="#7-获取帮助" class="headerlink" title="7.获取帮助"></a><font size=3>7.获取帮助</font></h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git help &lt;verb&gt;      # verb 为想要查询的命令,如 config</span><br><span class="line">git &lt;verb&gt; --help    # verb 为想要查询的命令,如 config</span><br><span class="line">man git-&lt;verb&gt;       # verb 为想要查询的命令,如 config</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;若不需要全面的手册，只需要可用选项的快速参考，那么可以用<code>-h</code>选项获得更简明的 <code>help</code>输出</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git &lt;verb&gt; -h        # verb 为想要查询的命令,如 config，add</span><br></pre></td></tr></table></figure>
+
+<h1 id="二、Git——本地仓库"><a href="#二、Git——本地仓库" class="headerlink" title="二、Git——本地仓库"></a><font size=3>二、<code>Git</code>——本地仓库</font></h1><p>&emsp;&emsp;本部分介绍<code>Git</code>在本地仓库中进行版本控制的相关操作。</p>
+<h2 id="1-Git在本地三大工作区域"><a href="#1-Git在本地三大工作区域" class="headerlink" title="1.Git在本地三大工作区域"></a><font size=3>1.<code>Git</code>在本地三大工作区域</font></h2><img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220110145428667.png" alt="image-20220110145428667" style="zoom:67%;" />
+
+
+
+<h2 id="2-基本命令"><a href="#2-基本命令" class="headerlink" title="2.基本命令"></a><font size=3>2.基本命令</font></h2><h3 id="2-1初始化文件夹"><a href="#2-1初始化文件夹" class="headerlink" title="2.1初始化文件夹"></a><font size=3>2.1初始化文件夹</font></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 进入或者创建想要初始化的文件夹</span></span><br><span class="line">cd ~/3MyGitFiles/</span><br><span class="line"><span class="meta">#</span><span class="bash"> 初始化</span></span><br><span class="line">git init</span><br></pre></td></tr></table></figure>
+
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220110150103283.png" alt="image-20220110150103283" style="zoom:67%;" />
+
+<p>&emsp;&emsp;如上图所示，初始化完成后会出现图中的提示，初始化的过程中<code>Git</code> 会创建一个 <code>.git</code> 目录。 这个目录包含了几乎所有 <code>Git</code> 存储和操作的东西。 如若想备份或复制一个版本库，只需把这个目录拷贝至另一处即可，新初始化的<code>.git</code>目录结构如下。</p>
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220110150513919.png" alt="image-20220110150513919" style="zoom:67%;" />
+
+<h3 id="2-2检查文件状态"><a href="#2-2检查文件状态" class="headerlink" title="2.2检查文件状态"></a><font size=3>2.2检查文件状态</font></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim a.md # 首先创建一个文件，运行后，按 :wq 保存并退出 </span><br><span class="line">git status  # 查看当前文件夹中文件状态</span><br></pre></td></tr></table></figure>
+
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220110150819365.png" alt="image-20220110150819365" style="zoom:67%;" />
+
+<p>&emsp;&emsp;我们先创建一个新的文件，不做任何操作，使用该命令，发现<code>Git</code>已经检测到该文件，当文件还未被提交到暂存区的时候显示为<strong>红色</strong>。</p>
+<p>&emsp;&emsp;<code>git status</code> 命令的输出十分详细，但输出有些繁琐。<code>Git </code>有一个选项可以缩短状态命令的输出，这样可以以简洁的方式查看更改，如下图所示。 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git status -s       # 使用该命令查看状态</span><br><span class="line">git status --short  # 或者使用该命令</span><br></pre></td></tr></table></figure>
+
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220110151912273.png" alt="image-20220110151912273" style="zoom:67%;" />
+
+<table><!--表格开始-->
+    <tr><!--第1行-->
+        <td align="center"><!--第1列-->
+            标记
+        </td>
+        <td align="center"><!--第2列-->
+            说明
+        </td>
+    </tr>
+    <tr><!--第2行-->
+        <td align="center"><!--第1列-->
+            ??
+        </td>
+        <td align="left"><!--第2列-->
+            新添加的未跟踪文件(红色)
+        </td>
+    </tr>
+    <tr><!--第3行-->
+        <td align="center"><!--第1列-->
+           A
+        </td>
+        <td align="left"><!--第2列-->
+            新添加到暂存区中的文件(绿色)
+        </td>
+    </tr>
+    <tr><!--第4行-->
+        <td align="center"><!--第1列-->
+           M
+        </td>
+        <td align="left"><!--第2列-->
+            修改过的文件(红色)
+        </td>
+    </tr>
+    <tr><!--第5行-->
+        <td align="center"><!--第1列-->
+           AM
+        </td>
+        <td align="left"><!--第2列-->
+            已添加到暂存区的文件又被修改了(A绿色，M红色)
+        </td>
+    </tr>
+    <tr><!--第5行-->
+        <td align="center"><!--第1列-->
+           UU
+        </td>
+        <td align="left"><!--第2列-->
+            由合并分支引起冲突，修改文件后还未添加到暂存区的状态标记(红色)
+        </td>
+    </tr>
+</table>
+
+
+
+<h3 id="2-3管理文件"><a href="#2-3管理文件" class="headerlink" title="2.3管理文件"></a><font size=3>2.3管理文件</font></h3><p>&emsp;&emsp;就是把文件添加到暂存区，<code>.</code>表示当前目录下所有文件，也可以只管理某一个文件，后边换成文件名称即可。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .            # 添加所有文件</span><br><span class="line">git add &lt;file_name&gt;  # 添加指定文件,可以同时指定多个文件</span><br></pre></td></tr></table></figure>
+
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220110152213824.png" alt="image-20220110152213824" style="zoom:67%;" />
+
+<p>【注意】文件添加到暂存区的时候，会由红色变为绿色。</p>
+<p>&emsp;&emsp;此时我们修改<code>a.md</code>文件，再查看状态，再提交到暂存区，这个时候文件状态的变化如下图所示：</p>
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220110152559490.png" alt="image-20220110152559490" style="zoom:67%;" />
+
+<p>&emsp;&emsp;在添加到暂存区之前，修改后的文件标记变成了<code>AM</code>的标记，<code>A</code>就表示之前已经提交到暂存区了，<code>M</code>表示提交后，又修改了此文件，当修改后再次提交，文件标记就会重新变成<code>A</code>。</p>
+<p>###<font size=3>2.4生成版本</font></p>
+<p>&emsp;&emsp;在本阶段，将把暂存区域的数据提交到本地的版本库中 ，命令中的描述是提交时写的提交说明，可以会更清楚的看到自己每次做了哪些修改，便于日志的查看。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;描述&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4查看提交的版本记录"><a href="#2-4查看提交的版本记录" class="headerlink" title="2.4查看提交的版本记录"></a><font size=3>2.4查看提交的版本记录</font></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br></pre></td></tr></table></figure>
+
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220110153305417.png" alt="image-20220110153305417" style="zoom:67%;" />
+
+<p>&emsp;&emsp;如图中所示，会显示提交的版本号，可以通过此版本号恢复到任一提交状态，<code>HEAD</code>表示当前指向的分支，就是当前提交是提交到了哪一个分支上，还会显示提交的作者信息，就是之前绑定的时候的信息，说明一点，当没有进行提交作者信息绑定的情况下，该命令会报错，需要注意一下。</p>
+<p>&emsp;&emsp;<code>git log</code>命令的其他参数</p>
+<table>
+    <tr>
+        <td align="center" width=100px>参数</td>
+        <td align="center">描述</td>
+    </tr>
+    <tr>
+        <td align="center" width=100px>--oneline</td>
+        <td align="left">把每一个提交信息压缩为一行</td>
+    </tr>
+    <tr>
+        <td align="center" width=100px>--stat</td>
+        <td align="left">通过比较每个提交展示插入与删除的数量</td>
+    </tr>
+    <tr>
+        <td align="center" width=100px>-p</td>
+        <td align="left">看每个提交实际的变化</td>
+    </tr>
+    <tr>
+        <td align="center" width=100px>--graph</td>
+        <td align="left">绘制一幅表示分支结构提交历史的ASCII图。该选项通常会结合 --oneline 与 --decorate 一起使用，使得能更加容易地看出提交所属的分支</td>
+    </tr>
+    <tr>
+        <td align="center" width=100px>--pretty=format:" <格式字符串> "</td>
+        <td align="left">可以让我们使用 printf 风格的占位符来展示每条提交。<br>详情可查看：<a target="_blank" rel="noopener" href="https://git-scm.com/docs/pretty-formats#_pretty_formats">PRETTY FORMATS</a>
+        </td>
+    </tr>
+</table>
+
+
+<p>【格式字符串】</p>
+<table style="font-size: 13.5px;">
+    <tr><td align="center">选项    </td><td align="center"> 说明</td></tr>
+<tr><td align="center">%H    </td><td align="left">提交对象（commit）的完整哈希字串</td></tr>
+<tr><td align="center">%h    </td><td align="left">提交对象的简短哈希字串</td></tr>
+<tr><td align="center">%T    </td><td align="left">树对象（tree）的完整哈希字串</td></tr>
+<tr><td align="center">%t    </td><td align="left">树对象的简短哈希字串</td></tr>
+<tr><td align="center">%P    </td><td align="left">父对象（parent）的完整哈希字串</td></tr>
+<tr><td align="center">%p    </td><td align="left">父对象的简短哈希字串</td></tr>
+<tr><td align="center">%an    </td><td align="left">作者（author）的名字</td></tr>
+<tr><td align="center">%ae    </td><td align="left">作者的电子邮件地址</td></tr>
+<tr><td align="center">%ad    </td><td align="left">作者修订日期（可以用 -date= 选项定制格式）</td></tr>
+<tr><td align="center">%ar    </td><td align="left">作者修订日期，按多久以前的方式显示</td></tr>
+<tr><td align="center">%cn    </td><td align="left">提交者(committer)的名字</td></tr>
+<tr><td align="center">%ce    </td><td align="left">提交者的电子邮件地址</td></tr>
+<tr><td align="center">%cd    </td><td align="left">提交日期( --date = 制定的格式)</td></tr>
+<tr><td align="center">%cr    </td><td align="left">提交日期，按多久以前的方式显示(1 day ago)</td></tr>
+<tr><td align="center">%s    </td><td align="left">提交说明</td></tr>
+<tr><td align="center">%d    </td><td align="left">ref 名称</td></tr>
+<tr><td align="center">%n    </td><td align="left">换行</td></tr>
+</table>
+
+<p>【说明】在选项前边加上<code>%C(color)</code>则可以分别指定输出内容的颜色，<code>color</code>可选的值有<code>reset（默认的灰色），normal, black, red, green, yellow, blue, magenta, cyan, white</code>。另外说明一点就是<code>color</code>最好就是可以**带上圆括号<code>()</code>**，这样既清晰，也不会出错。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git log --oneline  # 把每一个提交信息压缩为一行</span><br><span class="line">git log --stat     # 通过比较每个提交展示插入与删除的数量</span><br><span class="line">git log -p         # 看每个提交实际的变化</span><br><span class="line">git log --graph --oneline --decorate # 绘制一幅表示分支结构提交历史的ASCII图 </span><br><span class="line">git log --pretty=format:&quot;%Cgreen%an %Cred%h %Cblue%s&quot;      # 以不同颜色显示提交者名字、提交说明和简短的哈希字符串</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-5定制git-log"><a href="#2-5定制git-log" class="headerlink" title="2.5定制git log"></a><font size=3>2.5定制<code>git log</code></font></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 个人定制版 git <span class="built_in">log</span></span></span><br><span class="line">git log --graph --pretty=format:&#x27;%C(magenta)[%an]%C(reset) %C(red)%h%C(reset) : %C(green)%s%C(reset) %C(yellow)%d%C(reset) %C(blue)(%cr)%C(reset) &#x27; --abbrev-commit --date=relative # 相对时间</span><br><span class="line"></span><br><span class="line">git log --graph --pretty=format:&#x27;%C(magenta)[%an]%C(reset) %C(red)%h%C(reset) : %C(green)%s%C(reset) %C(yellow)%d%C(reset) %C(blue)(%cd)%C(reset) &#x27; --abbrev-commit --date=format:&#x27;%Y-%m-%d %H:%M:%S&#x27; # 绝对时间</span><br></pre></td></tr></table></figure>
+
+<p>【说明】一般来说<code>format</code>后边跟的是双引号<code>&quot;</code>，但是若想使用<code>alias</code>创建自定义命令的话，需要改为**单引号<code>&#39;</code>**，否则会报错。</p>
+<ul>
+<li>自定义方法一：修改<code>~/.gitconfig</code>文件</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.gitconfig</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;打开后在结尾处添加以下内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[alias]</span><br><span class="line">	mylog = log --graph --pretty=format:&#x27;%C(magenta)[%an]%C(reset) %C(red)%h%C(reset) : %C(green)%s%C(reset) %C(yellow)%d%C(reset) %C(blue)(%cr)%C(reset)&#x27; --abbrev-commit --date=relative</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>自定义方法二：命令行输入</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.mylog &quot;log --graph --pretty=format:&#x27;%C(magenta)[%an]%C(reset) %C(red)%h%C(reset) : %C(green)%s%C(reset) %C(yellow)%d%C(reset) %C(blue)(%cr)%C(reset)&#x27; --abbrev-commit --date=relative&quot;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>运行自定义命令</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git mylog</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>效果</li>
+</ul>
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220110174851259.png" alt="image-20220110174851259" style="zoom: 67%;" />
+
+<h2 id="3-小故事学操作"><a href="#3-小故事学操作" class="headerlink" title="3.小故事学操作"></a><font size=3>3.小故事学操作</font></h2><p>&emsp;&emsp;首先，介绍一下背景哈，后边可能会沿用这个故事来进行<code>Git</code>的学习，从而在不同场景下练习<code>Git</code>操作。</p>
+<p>&emsp;&emsp;<code>long long ago ...</code>，有一个孩子，叫<code>Hector</code>他学的专业是自动化这一方面的，他有一个朋友，名字是<code>Andrea</code>。这天<code>Hector</code>叫来<code>Andrea</code>说，我们做一个环境检测系统用于参加比赛吧，<code>Andrea</code>马上表现出极大的热情，于是，他们进行了各种调研之后，便开始进行这个项目的实践，项目名称就定为<code>environment</code>。</p>
+<h3 id="3-1开始项目工程"><a href="#3-1开始项目工程" class="headerlink" title="3.1开始项目工程"></a><font size=3>3.1开始项目工程</font></h3><ul>
+<li>1.创建项目文件夹并进行<code>Git</code>初始化</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/environment    # 创建项目工程文件夹</span><br><span class="line">cd ~/environment</span><br><span class="line">git init</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>2.创建程序文件</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/environment</span><br><span class="line">touch program.c</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>将所有文件添加到本地版本库以便于版本控制</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git status -s  # 查看文件状态</span><br><span class="line">git add .      # 添加所有文件到暂存区</span><br><span class="line">git commit -m &quot;Create related files.&quot; # 提交文件到本地版本库</span><br><span class="line">git mylog      # 查看提交记录，该命令为自己定制，具体可以看2.6节</span><br></pre></td></tr></table></figure>
+
+<p>【说明】为了作下一节的修改上次提交命令测试，这里删掉了之前的<code>.git</code>文件，重新进行了初始化和提交，所以<code>hash</code>值与上边的图片有所区别，后边都以新提交的为准。</p>
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220110211411391.png" alt="image-20220110211411391" style="zoom:67%;" />
+
+<h3 id="3-2修改上次提交"><a href="#3-2修改上次提交" class="headerlink" title="3.2修改上次提交"></a><font size=3>3.2修改上次提交</font></h3><p>&emsp;&emsp;提交完了，发现忘记创建说明文档了，即<code>readme.md</code>文件没有创建和提交。 那么怎么解决呢？可以重新提交一次，但是这就意味着版本库中有两个提交记录，这样的情况出现的多了，就会导致版本库历史记录很乱，我们既想将该文件提交上去，又不想让提交记录变得繁琐，那么要怎么样解决呢？此时，可以运行带有<code>--amend</code>选项的提交命令来重新提交，这样可以避免让仓库历史纪录变得复杂。</p>
+<ul>
+<li>命令格式</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend -m &quot;新的描述&quot; # 如果不加-m参数，系统会让进行输入的</span><br><span class="line">git commit --amend  --no-edit # 不修改描述，只是添加新文件</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>实际操作</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add readme.md</span><br><span class="line">git commit --amend  --no-edit # 重新提交</span><br><span class="line">git mylog     # 查看提交记录，该命令为自己定制，具体可以看2.6节</span><br></pre></td></tr></table></figure>
+
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220110212545086.png" alt="image-20220110212545086" style="zoom:67%;" />
+
+<p>&emsp;&emsp;由图可知，提交记录还是只有一条，提交的描述也未发生变化，但是提交时间和提交的<code>hash</code>值却更新了，其实按自己理解，就相当于撤销了上一次提交，将文件全部重新提交了一次。</p>
+<h3 id="3-3回到指定版本"><a href="#3-3回到指定版本" class="headerlink" title="3.3回到指定版本"></a><font size=3>3.3回到指定版本</font></h3><p>&emsp;&emsp;当某一项功能正在开发的时候，发现这一项功能不需要了，如果想要回到之前的功能，而去掉正在开发的东西，一个比较麻烦的方法就是将上一个功能完成后新增加的东西全部删除，但是这样的话工作量极其巨大，那么我们要怎么做呢？<code>Git</code>的版本回滚功能就很好的解决了这个问题。</p>
+<ul>
+<li>命令格式</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reflog               # 查看所有提交记录</span><br><span class="line">git reset --hard &lt;版本号&gt; # 回到指定版本,版本号即为每次提交的hash值</span><br></pre></td></tr></table></figure>
+
+<p>【说明】：</p>
+<p>&emsp;&emsp;其实这里查看所有提交记录的时候，也可以使用<code>git log(或者定制指令git mylog)</code>指令来查看，那么该指令与<code>git reflog</code>区别在哪里呢？</p>
+<p>&emsp;&emsp;<code>git reflog</code>命令可以查看<strong>所有分支的所有操作</strong>记录信息，<strong>包括</strong>已经被删除的 <code>commit</code> 记录和 <code>reset</code> 的操作。</p>
+<p>&emsp;&emsp;<code>git log</code>命令可以显示<strong>当前分支所有提交过</strong>的版本信息，<strong>不包括</strong>已经被删除的 <code>commit</code> 记录和<code>reset</code>的操作。(注意: 只是当前分支操作的信息)。</p>
+<p>&emsp;&emsp;所以，当我们回滚版本回滚错了的时候，想要恢复回滚之前的版本的话，<code>git reflog</code>就为该操作的实现提供了可能。</p>
+<ul>
+<li>实际操作</li>
+</ul>
+<p>&emsp;&emsp;到目前为止，<code>Hector</code>的环境检测项目已经开发了两个功能：温度检测(<code>Temperature detection</code>)和湿度检测(<code>Humidity detection</code>)两个功能，并且每个功能完成时都进行了单独的提交。</p>
+<table>
+    <tr>
+        <td align="center" width=150px>文件名称</td>
+        <td align="center">文件内容</td>
+    </tr>
+    <tr>
+        <td align="center" width=150px>program.c</td>
+        <td align="left">
+            1.Temperature detection<br>
+            <br>
+            2.Humidity detection</td>
+    </tr>
+    <tr>
+        <td align="center" width=150px>readme.md</td>
+        <td align="left">
+            1.温度检测功能开发完毕<br>
+            <br>
+            2.湿度检测功能开发完毕</td>
+    </tr>
+    <tr>
+        <td align="center" width=150px>提交记录</td>
+        <td align="center"><img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220110221729303.png" alt="image-20220110221729303" width="60%" heigh="60%"/></td>
+    </tr>
+</table>
+
+
+
+
+<p>（1）回到温度检测版本</p>
+<p>&emsp;&emsp;项目在一段时间后要向老师演示功能，但是老师说湿度检测功能不需要了，也不需要演示，同时湿度检测功能还有些小问题，为了完美展示温度检测功能，最好就是删除湿度检测功能，这就需要回滚版本到只开发了温度检测的时候了。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git mylog          # 此处使用 mylog，以便于后边作对比</span><br><span class="line">git reset --hard bf5d364</span><br></pre></td></tr></table></figure>
+
+<table>
+    <tr>
+        <td align="center" width=150px>文件名称</td>
+        <td align="center">文件内容</td>
+    </tr>
+    <tr>
+        <td align="center" width=150px>program.c</td>
+        <td align="left">
+            1.Temperature detection<br>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width=150px>readme.md</td>
+        <td align="left">
+            1.温度检测功能开发完毕<br>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width=150px>提交记录</td>
+        <td align="center"><img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220110223445564.png" alt="image-20220110223445564" width="60%" heigh="60%"/></td>
+    </tr>
+</table>
+
+
+
+<p>&emsp;&emsp;可以发现，版本回到了温度开发的版本，文件也发生了相应的变化，从提交记录中也可以看出<code>git log</code>与<code>git reflog</code>的区别。</p>
+<p>（2）回到湿度检测开发版本</p>
+<p>&emsp;&emsp;湿度检测也是环境检测的一项功能，虽然说老师并未要求，但是要是能做出来，这样也是极好的。但是两人一想，完了，刚才不是回到温度检测版本，把湿度检测的历史纪录删掉了吗？他们就要重新开发嘛？那不是很浪费时间，那有没有什么方法呢？当然有，依然是使用上边回到指定版本的命令，但是需要知道版本号啊，这怎么办呢？<code>Git</code>为用户提供了另外一个查看版本提交历史纪录的命令。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reflog</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;该命令就可以显示出所有的提交记录，包括已经删除的，所以运行以下命令可得表中数据。</p>
+<table>
+    <tr>
+        <td align="center" width=150px>文件名称</td>
+        <td align="center">文件内容</td>
+    </tr>
+    <tr>
+        <td align="center" width=150px>program.c</td>
+        <td align="left">
+            1.Temperature detection<br>
+            <br>
+            2.Humidity detection</td>
+    </tr>
+    <tr>
+        <td align="center" width=150px>readme.md</td>
+        <td align="left">
+            1.温度检测功能开发完毕<br>
+            <br>
+            2.湿度检测功能开发完毕</td>
+    </tr>
+    <tr>
+        <td align="center" width=150px>提交记录</td>
+        <td align="center"><img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220110225140989.png" alt="image-20220110225140989" width="70%" heigh="70%"/></td>
+    </tr>
+</table>
+
+
+
+<p> 可以发现，又回到了拥有湿度开发的版本。</p>
+<h3 id="3-4分支的应用"><a href="#3-4分支的应用" class="headerlink" title="3.4分支的应用"></a><font size=3>3.4分支的应用</font></h3><ul>
+<li>概念</li>
+</ul>
+<p>&emsp;&emsp;分支的大概原理思路，如下流程图中，<code>V1</code>和<code>V2</code>只是保存了修改信息，而不是复制了原程序，再进行开发，在<code>V2</code>节点，在新功能<code>B</code>开发过程中，<code>V2</code>出现了<code>BUG</code>，这个时候需要保留<code>B</code>的新功能，而又要修复<code>BUG</code>，此时可以新建分支修复<code>BUG</code>，此时在<code>BUG C1</code>中进行修复，新功能<code>B</code>也可以正常开发，当完成之后将他们都<strong>合并</strong>到主分支上去。分支的存在就保证了可以份个除开单独的空间做其他的事情，不同的分支不会互相影响。<br>&emsp;&emsp;所以在使用<code>Git</code>进行版本控制的时候建议创建至少两个分支，主分支用于正式版本程序发布，另外分支用于版本的更新迭代。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">A[主程序]</span><br><span class="line">A1[V1]--版本升级--&gt;A</span><br><span class="line">A2[V2]--版本升级--&gt;A1[V1]</span><br><span class="line">B1[新功能B]--新功能开发--&gt;A2[V2]</span><br><span class="line">C1[BUG C1]--修复BUG--&gt;A2[V2]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>命令格式</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">git branch &lt;branch name&gt;   # 创建分支</span><br><span class="line"></span><br><span class="line">git checkout &lt;branch name&gt; # 切换分支</span><br><span class="line"></span><br><span class="line">git checkout -b &lt;branch name&gt; # 创建并切换到创建的分支</span><br><span class="line"></span><br><span class="line">git merge &lt;branch name&gt;       # 合并分支（要先切换回要合并到的分支）</span><br><span class="line"></span><br><span class="line">git branch -d &lt;branch name&gt;   # -d 删除已合并分支</span><br><span class="line"></span><br><span class="line">git branch -D &lt;branch name&gt;   # -D 强制删除分支，不管是否已经合并</span><br><span class="line"></span><br><span class="line">git branch    # 得到当前所有分支的一个列表</span><br><span class="line"></span><br><span class="line">git branch -v # 查看每一个分支的最后一次提交</span><br><span class="line"></span><br><span class="line">git branch --merged    # 查看哪些分支已经合并到当前分支</span><br><span class="line"></span><br><span class="line">git branch --no-merged # 查看所有包含未合并工作的分支</span><br></pre></td></tr></table></figure>
+
+<p>【注意】</p>
+<p>&emsp;&emsp;1.在进行分支的切换或者其他操作时，一定要保证所有的文件都已经在本地版本库中被管理，也就是说，一定要<strong>提交所有文件之后再进行分支操作</strong>，否则可能会带来意想不到的问题。</p>
+<p>&emsp;&emsp;2.新的分支创建之后所有分支的内容、提交记录等<strong>完全一样</strong>。</p>
+<ul>
+<li>实际操作</li>
+</ul>
+<p>&emsp;&emsp;上文说道，他们已经恢复了湿度检测功能的相关代码，随后也修复了湿度检测功能的小问题，所以接下来要继续开发新动能，光照强度检测功能。但不幸的是，纲要进行新功能开发，湿度检测功能就出现了<code>BUG</code>，需要进行修复，但是新功能的开发也不能停下，修复<code>BUG</code>和新功能开发要同时进行，并且不能互相影响，他们这个时候就需要用到分支的功能了。</p>
+<p>【分支创建】</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 创建分支</span></span><br><span class="line">git branch newfunction    # 用于新功能开发</span><br><span class="line">git branch bug            # 用于修复bug</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看当前所有分支</span></span><br><span class="line">git branch</span><br></pre></td></tr></table></figure>
+
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220111112256553.png" alt="image-20220111112256553" style="zoom:67%;" />
+
+<p>可以发现，已经创建了新的分支，但是目前还是在主分支<code>master</code>。</p>
+<p>【新功能开发部分】</p>
+<p>（1）切换到<code>newfunction</code>分支</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout newfunction</span><br></pre></td></tr></table></figure>
+
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220111112757931.png" alt="image-20220111112757931" style="zoom:67%;" />
+
+<p>（2）开始光照强度检测功能开发</p>
+<p>&emsp;&emsp;切换到<code>newfunction</code>分支后，便可以进行新功能开发了，修改完相应文件后进行提交。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git status -s</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;Light intensity detection.&quot;</span><br><span class="line">git mylog</span><br></pre></td></tr></table></figure>
+
+<table>
+    <tr>
+        <td align="center" width=150px>文件名称</td>
+        <td align="center">文件内容</td>
+    </tr>
+    <tr>
+        <td align="center" width=150px>program.c</td>
+        <td align="left">
+            1.Temperature detection<br>
+            <br>
+            2.Humidity detection<br>
+            <br>
+            3.Light intensity detection
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width=150px>readme.md</td>
+        <td align="left">
+            1.温度检测功能开发完毕<br>
+            <br>
+            2.湿度检测功能开发完毕<br>
+            <br>
+            3.光照强度检测功能开发完毕</td>
+    </tr>
+    <tr>
+        <td align="center" width=150px>提交记录</td>
+        <td align="center"><img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220111113216612.png" alt="image-20220111113216612" width="70%" heigh="70%"/></td>
+    </tr>
+</table>
+
+
+
+
+
+<p>【<code>BUG</code>修复部分】</p>
+<p>（1）切换到<code>BUG</code>分支</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout bug</span><br></pre></td></tr></table></figure>
+
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220111113445755.png" alt="image-20220111113445755" style="zoom:67%;" />
+
+<p>可以发现，不同的分支是相互独立，互不影响的。</p>
+<p>（2）开始<code>BUG</code>修复</p>
+<p>&emsp;&emsp;切换到<code>BUG</code>分支后，便可以进行<code>BUG</code>修复了，修改完相应文件后进行提交。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git status -s</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;BUG fix.&quot;</span><br><span class="line">git mylog</span><br></pre></td></tr></table></figure>
+
+<table>
+    <tr>
+        <td align="center" width=150px>文件名称</td>
+        <td align="center">文件内容</td>
+    </tr>
+    <tr>
+        <td align="center" width=150px>program.c</td>
+        <td align="left">
+            1.Temperature detection<br>
+            <br>
+            2.Humidity detection<br>
+            &emsp;&emsp;bug1--->Restored<br>
+            &emsp;&emsp;bug2--->Restored<br>
+            &emsp;&emsp;bug3--->Restored<br>
+            &emsp;&emsp;bug4--->Restored<br>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width=150px>readme.md</td>
+        <td align="left">
+            1.温度检测功能开发完毕<br>
+            <br>
+            2.湿度检测功能开发完毕<br>
+            &emsp;&emsp;bug1--->已修复<br>
+            &emsp;&emsp;bug2--->已修复<br>
+            &emsp;&emsp;bug3--->已修复<br>
+            &emsp;&emsp;bug4--->已修复<br>
+            </td>
+    </tr>
+    <tr>
+        <td align="center" width=150px>提交记录</td>
+        <td align="center"><img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220111114426711.png" alt="image-20220111114426711" width="70%" heigh="70%"/></td>
+    </tr>
+</table>
+
+
+
+
+
+<p>【合并分支部分】</p>
+<p>&emsp;&emsp;当新功能和<code>BUG</code>修复的相关程序都已经完成时，就需要进行分支的合并了。</p>
+<p>（1）切换回<code>master</code>分支</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br></pre></td></tr></table></figure>
+
+<p>（2）查看<code>master</code>分支相关文件及提交记录</p>
+<table>
+    <tr>
+        <td align="center" width=150px>文件名称</td>
+        <td align="center">文件内容</td>
+    </tr>
+    <tr>
+        <td align="center" width=150px>program.c</td>
+        <td align="left">
+            1.Temperature detection<br>
+            <br>
+            2.Humidity detection</td>
+    </tr>
+    <tr>
+        <td align="center" width=150px>readme.md</td>
+        <td align="left">
+            1.温度检测功能开发完毕<br>
+            <br>
+            2.湿度检测功能开发完毕</td>
+    </tr>
+    <tr>
+        <td align="center" width=150px>提交记录</td>
+        <td align="center"><img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220111114909730.png" alt="image-20220111114909730" width="70%" heigh="70%"/></td>
+    </tr>
+</table>
+
+
+
+<p>可以发现，所有文件及提交记录并未发生变化。</p>
+<p>（3）合并<code>BUG</code>分支到<code>master</code></p>
+<p>&emsp;&emsp;要注意将一个分支合并到另一个分支的时候，要提前切换回另一个分支。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 确保切换回master分支</span></span><br><span class="line">git checkout master</span><br><span class="line"><span class="meta">#</span><span class="bash"> 合并分支</span></span><br><span class="line">git merge bug</span><br></pre></td></tr></table></figure>
+
+<table>
+    <tr>
+        <td align="center" width=150px>文件名称</td>
+        <td align="center">文件内容</td>
+    </tr>
+    <tr>
+        <td align="center" width=150px>program.c</td>
+        <td align="left">
+            1.Temperature detection<br>
+            <br>
+            2.Humidity detection<br>
+            &emsp;&emsp;bug1--->Restored<br>
+            &emsp;&emsp;bug2--->Restored<br>
+            &emsp;&emsp;bug3--->Restored<br>
+            &emsp;&emsp;bug4--->Restored<br>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width=150px>readme.md</td>
+        <td align="left">
+            1.温度检测功能开发完毕<br>
+            <br>
+            2.湿度检测功能开发完毕<br>
+            &emsp;&emsp;bug1--->已修复<br>
+            &emsp;&emsp;bug2--->已修复<br>
+            &emsp;&emsp;bug3--->已修复<br>
+            &emsp;&emsp;bug4--->已修复<br>
+            </td>
+    </tr>
+    <tr>
+        <td align="center" width=150px>提交记录</td>
+        <td align="center"><img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220111115224354.png" alt="image-20220111115224354" width="70%" heigh="70%"/></td>
+    </tr>
+</table>
+
+
+
+<p>发现文件与<code>BUG</code>分支的内容保持一致，提交记录也多了<code>BUG</code>分支的提交记录。</p>
+<p>（4）合并<code>newfunction</code>分支到<code>master</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 确保切换回master分支</span></span><br><span class="line">git checkout master</span><br><span class="line"><span class="meta">#</span><span class="bash"> 合并分支</span></span><br><span class="line">git merge newfunction</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;此时，问题出现了，如下图所示。</p>
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220111115543384.png" alt="image-20220111115543384" style="zoom:67%;" />
+
+<p>&emsp;&emsp;从结果可知，文件合并时出现了冲突，那么接下来，就看一看<code>master</code>分支的文件内容及提交记录是怎样的。</p>
+<table>
+    <tr>
+        <td align="center" width=150px>文件名称</td>
+        <td align="center">文件内容</td>
+    </tr>
+    <tr>
+        <td align="center" width=150px>program.c</td>
+        <td align="left">
+            1.Temperature detection<br>
+            <br>
+            2.Humidity detection<br>
+            <<<<<<< HEAD <br>
+            &emsp;&emsp;bug1--->Restored<br>
+            &emsp;&emsp;bug2--->Restored<br>
+            &emsp;&emsp;bug3--->Restored<br>
+            &emsp;&emsp;bug4--->Restored<br>
+            =======<br>
+            <br>
+            3.Light intensity detection<br>
+            >>>>>>> newfunction<br>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width=150px>readme.md</td>
+        <td align="left">
+            1.温度检测功能开发完毕<br>
+            <br>
+            2.湿度检测功能开发完毕<br>
+            <<<<<<< HEAD <br>
+            &emsp;&emsp;bug1--->已修复<br>
+            &emsp;&emsp;bug2--->已修复<br>
+            &emsp;&emsp;bug3--->已修复<br>
+            &emsp;&emsp;bug4--->已修复<br>
+            =======<br>
+            <br>
+            3.光照强度功能开发完毕<br>
+            >>>>>>> newfunction<br>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width=150px>提交记录</td>
+        <td align="center"><img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220111120142018.png" alt="image-20220111120142018" width="70%" heigh="70%"/></td>
+    </tr>
+</table>
+
+
+
+<p>&emsp;&emsp;从文件内容分析，创建了两个分支，这样的话三个分支的内容完全一致，在每个分支进行的操作，修改等互不影响。但是，在<code>git</code>中，这三个分支实际上使用的是<strong>同一个文件</strong>，同一个文件的同一行在不同的分支中代表不同的内容时，我们又要进行合并，那么此时内容会进行合并，都会显示在文件中，但是就会出现冲突以及冲突点的标记，这个时候需要我们手动来确认文件内容。从提交记录分析，合并分支后出现冲突，<code>newfunction</code>分支上的提交记录并未一起合并过来。那么接下来，我们就修改文件，重新提交。</p>
+<table>
+    <tr>
+        <td align="center" width=150px>文件名称</td>
+        <td align="center">文件内容</td>
+    </tr>
+    <tr>
+        <td align="center" width=150px>program.c</td>
+        <td align="left">
+            1.Temperature detection<br>
+            <br>
+            2.Humidity detection<br>
+            &emsp;&emsp;bug1--->Restored<br>
+            &emsp;&emsp;bug2--->Restored<br>
+            &emsp;&emsp;bug3--->Restored<br>
+            &emsp;&emsp;bug4--->Restored<br>
+            <br>
+            3.Light intensity detection<br>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width=150px>readme.md</td>
+        <td align="left">
+            1.温度检测功能开发完毕<br>
+            <br>
+            2.湿度检测功能开发完毕<br>
+            &emsp;&emsp;bug1--->已修复<br>
+            &emsp;&emsp;bug2--->已修复<br>
+            &emsp;&emsp;bug3--->已修复<br>
+            &emsp;&emsp;bug4--->已修复<br>
+            <br>
+            3.光照强度功能开发完毕<br>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width=150px>提交记录</td>
+        <td align="center"><img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220111121644396.png" alt="image-20220111121644396" width="70%" heigh="70%"/></td>
+    </tr>
+</table>
+
+
+
+<p>（5）删除已合并分支</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch -d bug</span><br><span class="line">git branch -d newfunction</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-5git-rebase"><a href="#3-5git-rebase" class="headerlink" title="3.5git rebase"></a><font size=3>3.5<code>git rebase</code></font></h3><h4 id="3-5-1rebase介绍"><a href="#3-5-1rebase介绍" class="headerlink" title="3.5.1rebase介绍"></a><font size=3>3.5.1<code>rebase</code>介绍</font></h4><p>&emsp;&emsp;<code>rebase</code>中文名字叫变基，它主要有两个方面的应用，第一方面是合并提交记录，使提交变得简洁。第二个方面是用于整合分支。具体情况可以继续往下阅读，通过实例，可能会更容易理解些。</p>
+<h4 id="3-5-2应用场景一：合并提交记录"><a href="#3-5-2应用场景一：合并提交记录" class="headerlink" title="3.5.2应用场景一：合并提交记录"></a><font size=3>3.5.2应用场景一：合并提交记录</font></h4><p>&emsp;&emsp;<code>rebase</code>可以让提交历史变得简洁，试想一下，一个功能的开发需要将近一个月的时间才能完成，在这一个月中不可能一次都不提交，这样提交的多了，提交记录就会显得特别的冗杂，这可不是大家希望看到的，这时候就会想，要是提交记录能合并该多好，于是<code>Git</code>中的<code>rebease</code>就为这种想法提供了可能。</p>
+<p>&emsp;&emsp;要注意的就是，最好不要合并已经推送到**远程分支(后边再讲，这里先提一下)**的提交记录，否则会比较麻烦，可能会报以下错误：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error: cannot &#x27;squash&#x27; without a previous commit</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>命令格式</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 1.合并从当前开始的前n个记录（包括当前）</span></span><br><span class="line">git rebase -i HEAD~n  # n 为要合并的提交记录数</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 2. git调用编辑器，用户输入相应内容</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 3. 若是vim编辑器，则进入命令模式后用 :wq 保存退出</span></span><br><span class="line"><span class="meta">#</span><span class="bash">    若是emacs(Git默认编辑器)，则按照屏幕下方的提示进行保存退出</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 4. 其他相关命令</span></span><br><span class="line">git rebase --edit-todo # 异常退出编辑器时，该命令可重新打开编辑器</span><br><span class="line">git rebase --continue</span><br><span class="line">git rebase --abort     # 终止变基(终止合并提交记录)</span><br></pre></td></tr></table></figure>
+
+<p>编辑器中的命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 命令:</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> p, pick &lt;提交&gt; == 使用提交</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> r, reword &lt;提交&gt; == 使用提交，但编辑提交说明</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> e, edit &lt;提交&gt; == 使用提交，但停止以便在 shell 中修补提交</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> s, squash &lt;提交&gt; == 使用提交，但挤压到前一个提交</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> f, fixup [-C | -c] &lt;提交&gt; == 类似于 <span class="string">&quot;squash&quot;</span>，但只保留前一个提交</span></span><br><span class="line"><span class="meta">#</span><span class="bash">                            的提交说明，除非使用了 -C 参数，此情况下则只</span></span><br><span class="line"><span class="meta">#</span><span class="bash">                            保留本提交说明。使用 -c 和 -C 类似，但会打开</span></span><br><span class="line"><span class="meta">#</span><span class="bash">                            编辑器修改提交说明</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> x, <span class="built_in">exec</span> &lt;命令&gt; == 使用 shell 运行命令（此行剩余部分）</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> b, <span class="built_in">break</span> = 在此处停止（使用 <span class="string">&#x27;git rebase --continue&#x27;</span> 继续变基）</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> d, drop &lt;提交&gt; = 删除提交</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> l, label &lt;label&gt; = 为当前 HEAD 打上标记</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> t, reset &lt;label&gt; = 重置 HEAD 到该标记</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> m, merge [-C &lt;commit&gt; | -c &lt;commit&gt;] &lt;label&gt; [<span class="comment"># &lt;oneline&gt;]</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> .       创建一个合并提交，并使用原始的合并提交说明（如果没有指定</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> .       原始提交，使用注释部分的 oneline 作为提交说明）。使用</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> .       -c &lt;提交&gt; 可以编辑提交说明。</span></span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="bash"><span class="comment"># 可以对这些行重新排序，将从上至下执行。</span></span></span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="bash"><span class="comment"># 如果您在这里删除一行，对应的提交将会丢失。</span></span></span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="bash"><span class="comment"># 然而，如果您删除全部内容，变基操作将会终止。</span></span></span><br><span class="line"><span class="meta">#</span></span><br></pre></td></tr></table></figure>
+
+<p>【注意】：</p>
+<p>&emsp;&emsp;1.至少要有三次提交时才可以进行提交记录合并，也就是说，其他的提交记录不能与第一条提交记录合并，否则会报<code>fatal: 无效的上游 &#39;HEAD~2&#39;</code>。</p>
+<p>&emsp;&emsp;2.在进入编辑器后，第一行的<code>pick</code>不要修改，其他的<code>pick</code>要改为<code>s</code>，这样提交记录才能进行合并，若是全部改为<code>s</code>则会报以下问题，出现该问题时，可以先终止，再重新合并。</p>
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220111154643834.png" alt="image-20220111154643834" style="zoom:67%;" />
+
+<ul>
+<li>实际操作</li>
+</ul>
+<p>&emsp;&emsp;<code>Hector</code>和<code>Andrea</code>在完成光照强度检测功能开发后，进入了摄像头采集图像信息的功能开发，该部分工作量较大，他们提交了很多的历史记录，看着非常的复杂，现在，他们想把前期采集图像的提交记录合并，那么怎么操作呢？他们之前提交的相关提交记录如下：</p>
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220111160758415.png" alt="image-20220111160758415" style="zoom:67%;" />
+
+<p>（1）合并提交记录命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 合并从当前开始的前两个记录（包括当前）</span></span><br><span class="line">git rebase -i HEAD~3</span><br></pre></td></tr></table></figure>
+
+<p>（2）修改编辑器中命令</p>
+<p>&emsp;&emsp;按照图中标记的三步进行即可。</p>
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220111161412252.png" alt="image-20220111161412252" style="zoom:67%;" />
+
+<p>（3）修改合并后的提交说明</p>
+<p>&emsp;&emsp;上一步完成后，会再次进入编辑器编辑模式，这一次是修改合并后需要显示的提交说明。</p>
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220111162007516.png" alt="image-20220111162007516" style="zoom:67%;" />
+
+<p>（4）查看提交记录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git mylog</span><br></pre></td></tr></table></figure>
+
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220111162120258.png" alt="image-20220111162120258" style="zoom:67%;" />
+
+<p>&emsp;&emsp;由图可知，合并完提交记录后，三次提交变成了一次，当有很多提交时，可以按照此方法进行合并，以使提交记录简洁明了。</p>
+<h4 id="3-5-3应用场景二：合并分支"><a href="#3-5-3应用场景二：合并分支" class="headerlink" title="3.5.3应用场景二：合并分支"></a><font size=3>3.5.3应用场景二：合并分支</font></h4><ul>
+<li>原理介绍(参考<a target="_blank" rel="noopener" href="https://git-scm.com/book/zh/v2/Git-分支-变基">官方文档:<code>3.6 Git 分支 - 变基</code></a>)</li>
+</ul>
+<p>&emsp;&emsp;在 <code>Git</code> 中整合来自不同分支的修改主要有两种方法：<code>merge</code> 以及 <code>rebase</code>，<code>merge</code>我们之前已经使用过了，这里主要介绍<code>rebase</code>。在这里举一个栗子：如下图所示，图中箭头是反方向，原因就是看法不同，箭头朝右表示版本的更迭，箭头朝左表示后一个版本由前一个版本修改提交而来。</p>
+<p>&emsp;&emsp;主分支<code>master</code>上已经有了<code>V0</code>&rarr;<code>V1</code>&rarr;<code>V2</code>&rarr;<code>V3</code>四个版本的提交历史，在<code>V2</code>版本的时候，新建了分支<code>Dev</code>，随后进行代码修改，进行一次提交，形成了<code>V3</code>版本的程序。</p>
+<p>&emsp;&emsp;对于功能开发分支<code>Dev</code>，它是从<code>master</code>分支上的<code>V2</code>版本处新建的分支，并进行了一次提交，形成了<code>V4</code>版本的提交记录。</p>
+<p>&emsp;&emsp;此时这两个分支还未进行任何操作，依然相互独立，互不影响。</p>
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220111210355418.png" alt="image-20220111210355418" style="zoom:67%;" />
+
+<p  align="center">图3.5.3-1 两个分支的提交历史</p>
+
+<p>（1）通过<code>merge</code>合并分支</p>
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220111211716416.png" alt="image-20220111211716416" style="zoom:67%;" />
+
+<p  align="center">图3.5.3-2 merge合并分支以整合文件和提交历史</p>
+
+<p>&emsp;&emsp;整合分支最容易的方法是 <code>merge</code> 命令。 它会把两个分支的最新快照（<code>V3</code>和<code>V4</code>）以及二者最近的共同祖先（<code>V2</code>）进行三方合并，合并的结果是生成一个新的快照（<code>V5</code>）（并提交）。这样做的结果就是通过<code>git log --graph</code>来打印提交记录的时候，会产生分叉，类似于这种：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*---*---*---*---*</span><br><span class="line">         \     /</span><br><span class="line">          --*--</span><br></pre></td></tr></table></figure>
+
+<p>（2）通过<code>rebase</code>合并</p>
+<p>&emsp;&emsp;若是在<code>图3.5.3-1</code>中，不使用<code>merge</code>，而是提取在<code>Dev</code>分支<code>V4</code>版本中引入的补丁和修改，然后在<code>master</code>分支上进行一次应用，也就是说将<code>Dev</code>分支<code>V4</code>中所作的修改直接添加到<code>master</code>分支的<code>V3</code>中。在 <code>Git</code> 中，这种操作就叫做<strong>变基（<code>rebase</code>）</strong>。我们可以使用 <code>rebase</code> 命令将提交到某一分支上的所有修改都移至另一分支上，就好像“重新播放”一样。</p>
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220111213504887.png" alt="image-20220111213504887" style="zoom:67%;" />
+
+<p  align="center">图3.5.3-3 rebease将V4的修改变基到V3上</p>
+
+<p>&emsp;&emsp;执行以下命令，完成变基：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 终端中输入的命令</span></span><br><span class="line">git checkout Dev</span><br><span class="line">git rebase master</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 终端中显示的提示(官方文档提供)</span></span><br><span class="line">First, rewinding head to replay your work on top of it...</span><br><span class="line">Applying: added staged command</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 终端中显示的提示(自己实践显示)</span></span><br><span class="line">成功变基并更新 refs/heads/Dev。</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;它的原理是首先找到这两个分支（即当前分支 <code>Dev</code>、变基操作的目标基底分支 <code>master</code>） 的最近共同祖先 <code>V2</code>，然后对比当前分支相对于该祖先的历次提交，<strong>提取相应的修改并存为临时文件</strong>， 然后将当前分支（<code>Dev</code>分支）指向目标基底（<code>master</code>） <code>V3</code>，最后以此将之前另存为临时文件的修改依序应用。<strong>【注意】此时在<code>Dev</code>分支中已经包含了<code>master</code>分支中<code>V3</code>的提交历史了，但是<code>master</code>分支依然处于<code>V3</code>处</strong>。</p>
+<p>&emsp;&emsp;回到<code>master</code>分支，进行一次快进合并（通过<code>merge</code>），注意此时也可能会有冲突出现，处理解决后正常提交一次即可。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">git merge Dev</span><br></pre></td></tr></table></figure>
+
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220111215818312.png" alt="image-20220111215818312" style="zoom:67%;" />
+
+<p>&emsp;&emsp;此时，<code>V4&#39;</code>指向的快照就和图3.5.3-2中<code> V5</code> 指向的快照一模一样了。 这两种整合方法的最终结果没有任何区别，但是变基使得提交历史更加整洁。 在查看一个经过变基的分支的历史记录时会发现，尽管实际的开发工作是并行的， 但它们看上去就像是串行的一样，提交历史是一条直线没有分叉。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*---*---*---*---*</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;一般我们这样做的目的是为了确保在向远程分支推送时能保持提交历史的整洁——例如向某个其他人维护的项目贡献代码时。 在这种情况下，首先在自己的分支里进行开发，当开发完成时需要先将的代码变基到 <code>origin/master</code> 上，然后再向主项目提交修改。 这样的话，该项目的维护者就不再需要进行整合工作，只需要快进合并便可。</p>
+<p>&emsp;&emsp;请注意，无论是通过变基，还是通过三方合并，整合的最终结果所指向的快照始终是一样的，只不过提交历史不同罢了。 变基是将一系列提交按照原有次序依次应用到另一分支上，而合并是把最终结果合在一起。</p>
+<p>【注意】更多例子请查看官网说明文档：<a target="_blank" rel="noopener" href="https://git-scm.com/book/zh/v2/Git-分支-变基">官方文档:<code>3.6 Git 分支 - 变基</code></a></p>
+<ul>
+<li>实际操作</li>
+</ul>
+<p>&emsp;&emsp;上节讲到，<code>Hector</code>和<code>Andrea</code>已经完成了摄像头信息采集功能的提交记录合并，算是已经完成了图像采集功能。接着，他们要进行下一步了，开发新的功能二氧化碳浓度检测，而与此同时还要继续摄像头功能的下一步，完成检测到异常情况后拍摄照片功能。此时呢，他们新建了一个分支进行摄像头功能的下一步开发，新功能就直接在<code>master</code>分支上进行了开发，这样倒是没什么问题，但是通过<code>merge</code>就会使提交记录产生分叉，他们又不希望出现这样的情况，那么该怎么办呢？接下来，他们便尝试了<code>rebase</code>的方法。</p>
+<p>【摄像头功能的继续开发（<code>dev</code>分支）】</p>
+<p>（1）新建分支，并进行功能开发</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch dev   # 新建分支</span><br><span class="line">git checkout dev # 切换分支开始工作</span><br></pre></td></tr></table></figure>
+
+<p>（2）提交文件并查看提交记录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;Camera takes pictures.&quot;</span><br><span class="line">git mylog</span><br></pre></td></tr></table></figure>
+
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220111221722269.png" alt="image-20220111221722269" style="zoom:67%;" />
+
+<p>【二氧化碳浓度检测的新功能开发（<code>master</code>分支）】</p>
+<p>（1）开发新功能</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 1.切换回master分支</span></span><br><span class="line">git checkout master</span><br><span class="line"><span class="meta">#</span><span class="bash"> 2.修改文件</span></span><br></pre></td></tr></table></figure>
+
+<p>（2）提交文件并查看提交记录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;CO2 concentration detection.&quot;</span><br><span class="line">git mylog</span><br></pre></td></tr></table></figure>
+
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220111222618717.png" alt="image-20220111222618717" style="zoom:67%;" />
+
+<p>【通过<code>merge</code>合并】</p>
+<p>&emsp;&emsp;为了做一个对比，这里两种方法都进行尝试。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge dev</span><br></pre></td></tr></table></figure>
+
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220111222849245.png" alt="image-20220111222849245" style="zoom:67%;" />
+
+<p>&emsp;&emsp;合并时，<code>Git</code>会打开设置的编辑器，让用户输入合并时的提交说明。</p>
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220111223035993.png" alt="image-20220111223035993" style="zoom:67%;" />
+
+<p>&emsp;&emsp;由图中可知，提交的历史的<code>ASCII图</code> 产生了分叉，为了下一步验证<code>rebase</code>，这里还需要回滚到未合并之前的时候。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard 250f573</span><br></pre></td></tr></table></figure>
+
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220111223412509.png" alt="image-20220111223412509" style="zoom:67%;" />
+
+<p>【通过<code>rebase</code>合并】</p>
+<p>（1）切换到<code>dev</code>分支并执行变基命令（<code>rebase</code>）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 切换到dev分支</span></span><br><span class="line">git checkout dev</span><br><span class="line"><span class="meta">#</span><span class="bash"> 变基</span></span><br><span class="line">git rebase master</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看带ASCII图的提交记录</span></span><br><span class="line">git mylog</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220111223622816.png" alt="image-20220111223622816"></p>
+<p>&emsp;&emsp;由图可知，<code>master</code>分支上的最新的提交（<code>CO2 concentration detection.</code>）也归入了<code>dev</code>分支。</p>
+<p>（2）切换到<code>master</code>分支并进行一次快速合并（<code>merge</code>）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">git merge dev</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看带ASCII图的提交记录</span></span><br><span class="line">git mylog</span><br></pre></td></tr></table></figure>
+
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220111224048902.png" alt="image-20220111224048902" style="zoom:67%;" />
+
+<p>&emsp;&emsp;由图中可知，<code>master</code>上的提交不再分叉，就是一条直线的提交了。<strong>【注意】<code>merge</code>的时候还是有可能会产生冲突，解决冲突后重新进行一次提交即可</strong>。</p>
+<h1 id="三、Git——远程仓库"><a href="#三、Git——远程仓库" class="headerlink" title="三、Git——远程仓库"></a><font size=3>三、<code>Git</code>——远程仓库</font></h1><h2 id="1-Github是什么？"><a href="#1-Github是什么？" class="headerlink" title="1.Github是什么？"></a><font size=3>1.<code>Github</code>是什么？</font></h2><p>&emsp;&emsp;<code>GitHub</code>是一个面向开源及私有软件项目的<strong>托管平台</strong>，因为只支持<code>Git</code>作为唯一的版本库格式进行托管，故名<code>GitHub</code>。简单来说，<code>GitHub</code>是一个代码托管云服务网站，帮助开发者存储和管理其项目源代码，且能够追踪、记录并控制用户对其代码的修改。</p>
+<h2 id="2-Github能做什么？"><a href="#2-Github能做什么？" class="headerlink" title="2.Github能做什么？"></a><font size=3>2.<code>Github</code>能做什么？</font></h2><ul>
+<li>托管代码、历史版本管理</li>
+<li>搜索开源项目</li>
+<li>分享的同时会得到社区的回馈</li>
+<li>使用<code>Github Pages</code>服务，可以免费搭建一个博客网站</li>
+<li>学习，能力提升</li>
+<li>提升自己的影响力</li>
+</ul>
+<h2 id="3-Github与Git有什么关系？"><a href="#3-Github与Git有什么关系？" class="headerlink" title="3.Github与Git有什么关系？"></a><font size=3>3.<code>Github</code>与<code>Git</code>有什么关系？</font></h2><p>&emsp;&emsp;简单来说，<code>Git</code>只是一个<strong>命令行工具</strong>，一个<strong>分布式版本控制系统</strong>。正是它在背后管理和跟踪你的代码历史版本，好比一个时光机，让你在代码出错时不至于手忙脚乱，能快速回退之前的历史版本。 类似的工具还有<code>SVN</code>。</p>
+<p>&emsp;&emsp;而<code>GitHub</code>是一个代码托管网站，背后使用<code>Git</code>作为版本管理工具（而非<code>svn</code>）。主要服务是将你的项目代码托管到云服务器上，而非存储在自己本地硬盘上。类似的网站还有<code>gitlab.com，bitbucket.com，coding.com(国内)，gitee.com(国内)</code></p>
+<h2 id="4-为什么要用Github托管代码？"><a href="#4-为什么要用Github托管代码？" class="headerlink" title="4.为什么要用Github托管代码？"></a><font size=3>4.为什么要用<code>Github</code>托管代码？</font></h2><p>&emsp;&emsp;试想一下，当我们需要在两个不同且间隔很远的地方来回奔波，并且还要写代码的时候，代码在本地电脑里边，但是我们总不能到处都带着电脑吧，很简单的一个想法，我们可以用硬盘啊，或者云盘，保存一份代码，只带着硬盘或者从云盘里边下载，这样不就解决了携带电脑的不便问题了吗？没错，<code>GitHub</code>就是一个大型的托管平台，这个平台可以实现团队协作，也可以同步提交记录，无疑是提供了巨大的方便。</p>
+<h2 id="5-Github经常打不开怎么办？"><a href="#5-Github经常打不开怎么办？" class="headerlink" title="5.Github经常打不开怎么办？"></a><font size=3>5.<code>Github</code>经常打不开怎么办？</font></h2><h3 id="5-1手动查询并修改hosts文件"><a href="#5-1手动查询并修改hosts文件" class="headerlink" title="5.1手动查询并修改hosts文件"></a><font size=3>5.1手动查询并修改<code>hosts</code>文件</font></h3><p>【说明】也有可能没啥用，但是网上好多这种方法的说明。</p>
+<ul>
+<li>三个网址</li>
+</ul>
+<table>
+    <tr>
+        <td align="center">GitHub网址IP查询</td>
+        <td align="left"><a target="_blank" rel="noopener" href="https://ipaddress.com/website/github.com">GitHub.com</a></td>
+    </tr>
+    <tr>
+        <td align="center">GitHub域名查询</td>
+        <td align="left"><a target="_blank" rel="noopener" href="https://ipaddress.com/website/github.global.ssl.fastly.net">github.global.ssl.Fastly.net</a></td>
+    </tr>
+    <tr>
+        <td align="center">GitHub静态资源IP</td>
+        <td align="left"><a target="_blank" rel="noopener" href="https://ipaddress.com/website/assets-cdn.github.com">assets-cdn.Github.com</a></td>
+    </tr>
+</table>
+
+
+<ul>
+<li><code>host</code>文件</li>
+</ul>
+<table>
+    <tr>
+        <td align="center">Linux</td>
+        <td align="left">/etc/hosts</td>
+    </tr>
+    <tr>
+        <td align="center">Windows</td>
+        <td align="left">C:\Windows\System32\drivers\etc\hosts</td>
+    </tr>
+</table>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 在结尾添加以下内容，注意前边地址要以查询到的为准</span><br><span class="line">140.82.112.3 github.com</span><br><span class="line">199.232.69.194 github.global.ssl.fastly.net</span><br><span class="line">185.199.108.153 assets-cdn.github.com</span><br><span class="line">185.199.110.153 assets-cdn.github.com</span><br><span class="line">185.199.111.153 assets-cdn.github.com</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用<code>CMD</code>命令刷新<code>dns</code>缓存</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipconfig /flushdns</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2软件查询并修改hosts文件"><a href="#5-2软件查询并修改hosts文件" class="headerlink" title="5.2软件查询并修改hosts文件"></a><font size=3>5.2软件查询并修改<code>hosts</code>文件</font></h3><p>【说明】此款软件可以查询延迟，操作相对容易，而且自己试了下，用的时候有效。</p>
+<ul>
+<li>软件截图</li>
+</ul>
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220112163849973.png" alt="image-20220112163849973" style="zoom:50%;" />
+
+<ul>
+<li>软件地址</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.dogfight360.com/blog/475/</span><br></pre></td></tr></table></figure>
+
+<p>【说明】软件来自：<a target="_blank" rel="noopener" href="https://www.dogfight360.com/blog/">羽翼城个人博客</a></p>
+<h2 id="6-怎样使用Github？"><a href="#6-怎样使用Github？" class="headerlink" title="6.怎样使用Github？"></a><font size=3>6.怎样使用<code>Github</code>？</font></h2><h3 id="6-1注册Github账号"><a href="#6-1注册Github账号" class="headerlink" title="6.1注册Github账号"></a><font size=3>6.1注册<code>Github</code>账号</font></h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/</span><br></pre></td></tr></table></figure>
+
+<p>进入网站后，点击<code>sign up</code>即可开始注册</p>
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220112164049972.png" alt="image-20220112164049972" style="zoom: 33%;" />
+
+<h3 id="6-2新建仓库"><a href="#6-2新建仓库" class="headerlink" title="6.2新建仓库"></a><font size=3>6.2新建仓库</font></h3><ul>
+<li>【头像左侧】&rarr;【<code>+</code>号】&rarr;【<code>New repository</code>】</li>
+</ul>
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220112164554671.png" alt="image-20220112164554671" style="zoom:80%;" />
+
+<ul>
+<li>输入仓库相关信息，并创建即可</li>
+</ul>
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220112165056498.png" alt="image-20220112165056498" style="zoom:50%;" />
+
+<h3 id="6-3相关命令"><a href="#6-3相关命令" class="headerlink" title="6.3相关命令"></a><font size=3>6.3相关命令</font></h3><p>【本地版本库与远程仓库相关命令】</p>
+<ul>
+<li>克隆</li>
+</ul>
+<table>
+    <tr>
+        <td align="center">git-clone</td>
+        <td align="left"><a target="_blank" rel="noopener" href="https://git-scm.com/docs/git-clone/en#_name">https://git-scm.com/docs/git-clone/en#_name</a></td>
+    </tr>
+</table>
+
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 克隆相关操作</span></span><br><span class="line">git clone &lt;repository_url&gt;  # clone仓库</span><br><span class="line">git clone &lt;repository_url&gt; another-repository-name # clone下来的仓库存储为其他名称</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>推送与拉取</li>
+</ul>
+<table>
+    <tr>
+        <td align="center">git-remote</td>
+        <td align="left"><a target="_blank" rel="noopener" href="https://git-scm.com/docs/git-remote#_name">https://git-scm.com/docs/git-remote#_name</a></td>
+    </tr>
+    <tr>
+        <td align="center">git-push</td>
+        <td align="left"><a target="_blank" rel="noopener" href="https://git-scm.com/docs/git-push#_name">https://git-scm.com/docs/git-push#_name</a></td>
+    </tr>
+    <tr>
+        <td align="center">git-pull</td>
+        <td align="left"><a target="_blank" rel="noopener" href="https://git-scm.com/docs/git-pull#_name">https://git-scm.com/docs/git-pull#_name</a></td>
+    </tr>
+</table>
+
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 添加本地仓库与远程仓库链接</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> name为远程仓库地址设置一个别名，也可以为其他</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> url为仓库地址</span></span><br><span class="line">git remote add &lt;name&gt; &lt;url&gt;</span><br><span class="line"></span><br><span class="line">git remote                       # 列出每个远程库的简短名字</span><br><span class="line"></span><br><span class="line">git remote -v                    # 直接显示对应的克隆地址</span><br><span class="line"></span><br><span class="line">git remote remove &lt;name&gt;         # 删除本地仓库与远程仓库关联</span><br><span class="line"></span><br><span class="line">git push -u &lt;name&gt; &lt;branch name&gt; # 将本地仓库文件上传到远程仓库分支</span><br><span class="line"></span><br><span class="line">git pull &lt;name&gt; &lt;远程分支名&gt;       # 从远程仓库更新本地仓库版本,远程分支与本地当前分支合并</span><br><span class="line"></span><br><span class="line">git pull &lt;name&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt; # 从远程仓库更新本地仓库版本,远程分支与本地当前分支合并</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-4实际操作"><a href="#6-4实际操作" class="headerlink" title="6.4实际操作"></a><font size=3>6.4实际操作</font></h3><p>&emsp;&emsp;<code>Hector</code>和<code>Andrea</code>已经完成了大部分的功能，但是此时他要课程也多了起来，实验代码却都在实验室的电脑上，他们去实验室的时间少了许多。他们希望回到宿舍依然可以进行代码开发，所以他们想到了<code>GitHub</code>。</p>
+<ul>
+<li>添加本地仓库与远程仓库的联系</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:qidaink/environment.git # 添加本地仓库与远程仓库链接 </span><br><span class="line">git remote -v  # 直接显示对应的克隆地址</span><br></pre></td></tr></table></figure>
+
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220115085456790.png" alt="image-20220115085456790" style="zoom:67%;" />
+
+<ul>
+<li><code>push</code>程序到<code>GitHub</code>上</li>
+</ul>
+<p>&emsp;&emsp;登陆自己的<code>GitHub</code>账号并进入相应的远程仓库地址，会发现<code>master</code>分支上的所有数据以及提交记录（与前边最后一次提交后的记录一致），全部都会显示在自己的远程仓库，要注意没有推送的分支是不会显示在<code>GitHub</code>远程仓库的，如果想要推送其他分支，在推送的时候写相应的分支即可。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin master # 推送master分支</span><br><span class="line">git push -u origin dev    # 推送dev分支</span><br></pre></td></tr></table></figure>
+
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220115085735892.png" alt="image-20220115085735892" style="zoom:67%;" />
+
+<ul>
+<li>克隆仓库</li>
+</ul>
+<p>&emsp;&emsp;回到宿舍后，他们需要<code>clone</code>一份程序到本地，怎么操作呢？</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:qidaink/environment.git test</span><br></pre></td></tr></table></figure>
+
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220115091311253.png" alt="image-20220115091311253" style="zoom:67%;" />
+
+<p>&emsp;&emsp;进入<code>test</code>文件夹，查看各项信息，会发现提交记录与文件都在，唯独缺少了<code>dev</code>分支，实际上该分支已经被下载下来了，我们可直接切换分支。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git mylog        # 查看提交记录</span><br><span class="line">git branch       # 查看分支</span><br><span class="line">git checkout dev # 直接切换分支</span><br></pre></td></tr></table></figure>
+
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220115091550777.png" alt="image-20220115091550777" style="zoom:67%;" />
+
+<h1 id="四、Git——beyond-compare"><a href="#四、Git——beyond-compare" class="headerlink" title="四、Git——beyond compare"></a><font size=3>四、<code>Git</code>——<code>beyond compare</code></font></h1><p>&emsp;&emsp;在<code>Ubuntu</code>环境下，有时候文件多的话，合并分支时产生的冲突可能也会很多，我们不能保证每一个文件都不漏，所以这款软件——<code>beyond compare</code>，会给我们带来很大的帮助。</p>
+<h2 id="4-1简介"><a href="#4-1简介" class="headerlink" title="4.1简介"></a><font size=3>4.1简介</font></h2><p>&emsp;&emsp;<a target="_blank" rel="noopener" href="https://www.scootersoftware.com/">Beyond Compare</a>是一套由Scooter Software推出的文件比较工具。主要用途是对比两个文件夹或者文件，并将差异以颜色标示。比较范围包括目录，文档内容等，可以用于git中合并分支的时候快速解决冲突。</p>
+<h2 id="4-2安装与配置"><a href="#4-2安装与配置" class="headerlink" title="4.2安装与配置"></a><font size=3>4.2安装与配置</font></h2><table>
+    <tr>
+        <td align="center">官方安装教程</td>
+        <td align="left"><a target="_blank" rel="noopener" href="https://www.scootersoftware.com/download.php?zz=kb_linux_install">Linux Installation Instructions</a></td>
+    </tr>
+</table>
+
+
+<ul>
+<li>下载安装包</li>
+</ul>
+<p>&emsp;&emsp;下载网址：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.scootersoftware.com/download.php</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;选择<code>Linux</code>中的64位<code>Debian</code>包下载，如果用以下命令下载速度特别慢的话，可以直接浏览器下载。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://www.scootersoftware.com/bcompare-4.4.1.26165_amd64.deb</span><br><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装软件</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 进入deb所在文件夹，执行以下命令</span></span><br><span class="line">cd ~</span><br><span class="line">sudo apt install ./bcompare-4.4.1.26165_amd64.deb</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>卸载软件</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt remove bcompare</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装密钥</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 进入相应文件夹</span></span><br><span class="line">cd /usr/lib/beyondcompare/</span><br><span class="line"><span class="meta">#</span><span class="bash"> 执行以下命令</span></span><br><span class="line">sudo sed -i &quot;s/keexjEP3t4Mue23hrnuPtY4TdcsqNiJL-5174TsUdLmJSIXKfG2NGPwBL6vnRPddT7tH29qpkneX63DO9ECSPE9rzY1zhThHERg8lHM9IBFT+rVuiY823aQJuqzxCKIE1bcDqM4wgW01FH6oCBP1G4ub01xmb4BGSUG6ZrjxWHJyNLyIlGvOhoY2HAYzEtzYGwxFZn2JZ66o4RONkXjX0DF9EzsdUef3UAS+JQ+fCYReLawdjEe6tXCv88GKaaPKWxCeaUL9PejICQgRQOLGOZtZQkLgAelrOtehxz5ANOOqCaJgy2mJLQVLM5SJ9Dli909c5ybvEhVmIC0dc9dWH+/N9KmiLVlKMU7RJqnE+WXEEPI1SgglmfmLc1yVH7dqBb9ehOoKG9UE+HAE1YvH1XX2XVGeEqYUY-Tsk7YBTz0WpSpoYyPgx6Iki5KLtQ5G-aKP9eysnkuOAkrvHU8bLbGtZteGwJarev03PhfCioJL4OSqsmQGEvDbHFEbNl1qJtdwEriR+VNZts9vNNLk7UGfeNwIiqpxjk4Mn09nmSd8FhM4ifvcaIbNCRoMPGl6KU12iseSe+w+1kFsLhX+OhQM8WXcWV10cGqBzQE9OqOLUcg9n0krrR3KrohstS9smTwEx9olyLYppvC0p5i7dAx2deWvM1ZxKNs0BvcXGukR+/g&quot; BCompare</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;执行完毕之后，打开软件会有<code>Trial Mode Error！</code>弹窗，点击右下角的<code>Enter Key</code>，输入以下代码，出现<code>Thanks for registering</code>则表示注册成功。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">--- BEGIN LICENSE KEY ---</span><br><span class="line">GXN1eh9FbDiX1ACdd7XKMV7hL7x0ClBJLUJ-zFfKofjaj2yxE53xauIfkqZ8FoLpcZ0Ux6McTyNmODDSvSIHLYhg1QkTxjCeSCk6ARz0ABJcnUmd3dZYJNWFyJun14rmGByRnVPL49QH+Rs0kjRGKCB-cb8IT4Gf0Ue9WMQ1A6t31MO9jmjoYUeoUmbeAQSofvuK8GN1rLRv7WXfUJ0uyvYlGLqzq1ZoJAJDyo0Kdr4ThF-IXcv2cxVyWVW1SaMq8GFosDEGThnY7C-SgNXW30jqAOgiRjKKRX9RuNeDMFqgP2cuf0NMvyMrMScnM1ZyiAaJJtzbxqN5hZOMClUTE+++</span><br><span class="line">--- END LICENSE KEY -----</span><br></pre></td></tr></table></figure>
+
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220115092850422.png" alt="image-20220115092850422" style="zoom: 50%;" />
+
+<p>注册成功如下图所示</p>
+<img src="https://fanhua-picture.oss-cn-hangzhou.aliyuncs.com/Ubuntu/Git/image-20220115092935369.png" alt="image-20220115092935369" style="zoom: 50%;" />
+
+<h2 id="4-3配置"><a href="#4-3配置" class="headerlink" title="4.3配置"></a><font size=3>4.3配置</font></h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看bcompare软件位置</span></span><br><span class="line">which bcompare</span><br><span class="line"><span class="meta">#</span><span class="bash"> 再进行以下配置<span class="built_in">local</span>代表只在本地生效，全局生效可以改为global</span></span><br><span class="line">git config --local merge.tool bc4</span><br><span class="line">git config --local mergetool.path &quot;/usr/bin/bcompare&quot;</span><br><span class="line">git config --local mergetool.keepBackup false</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-4使用方法"><a href="#4-4使用方法" class="headerlink" title="4.4使用方法"></a><font size=3>4.4使用方法</font></h2><ul>
+<li>启动软件</li>
+</ul>
+<p>&emsp;&emsp;先使用命令合并分支，若产生冲突，则使用以下命令启动软件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git mergetool</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">qidaink</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://qidaink-vercel-pages.vercel.app/post/27f20136.html">https://qidaink-vercel-pages.vercel.app/post/27f20136.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://qidaink-vercel-pages.vercel.app" target="_blank">云与海</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Git/">Git</a></div><div class="post_share"><div class="social-share" data-image="/images/dafault-img.jpg" data-sites="wechat,qq,weibo"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/myqq.jpg" target="_blank"><img class="post-qr-code-img" src="/images/myqq.jpg" alt="我的QQ"/></a><div class="post-qr-code-desc">我的QQ</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/5df7cbd0.html"><img class="prev-cover" src="/images/dafault-img.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【Ubuntu】VMware中Ubuntu使用问题解决</div></div></a></div><div class="next-post pull-right"><a href="/post/780343d3.html"><img class="next-cover" src="/images/dafault-img.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【Git】Git-01-Git的安装与基本配置</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/post/780343d3.html" title="【Git】Git-01-Git的安装与基本配置"><img class="cover" src="/images/dafault-img.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-21</div><div class="title">【Git】Git-01-Git的安装与基本配置</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Waline</span><span class="switch-btn"></span><span class="second-comment">Twikoo</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">qidaink</div><div class="author-info__description">但愿人长久，千里共婵娟</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">34</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/qidaink"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/qidaink" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/qq_38231279" target="_blank" title="CSDN"><i class="fas fa-copyright"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到云与海的博客！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81Git%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4"><span class="toc-text">一、Git配置命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC"><span class="toc-text"> 1.查看版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%AE%BE%E7%BD%AE%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="toc-text"> 2.设置用户信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%AE%BE%E7%BD%AE%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-text">3.设置文本编辑器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%A3%80%E6%9F%A5%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF"><span class="toc-text">4.检查配置信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%AF%B9LF%E5%92%8CCRLF%E7%9A%84%E5%A4%84%E7%90%86"><span class="toc-text">5.对LF和CRLF的处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E6%9F%A5%E7%9C%8B%E9%85%8D%E7%BD%AE%E5%8F%8A%E9%85%8D%E7%BD%AE%E6%89%80%E5%9C%A8%E6%96%87%E4%BB%B6"><span class="toc-text"> 6.查看配置及配置所在文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E8%8E%B7%E5%8F%96%E5%B8%AE%E5%8A%A9"><span class="toc-text">7.获取帮助</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Git%E2%80%94%E2%80%94%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93"><span class="toc-text">二、Git——本地仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Git%E5%9C%A8%E6%9C%AC%E5%9C%B0%E4%B8%89%E5%A4%A7%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%9F%9F"><span class="toc-text">1.Git在本地三大工作区域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4"><span class="toc-text">2.基本命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-text">2.1初始化文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2%E6%A3%80%E6%9F%A5%E6%96%87%E4%BB%B6%E7%8A%B6%E6%80%81"><span class="toc-text">2.2检查文件状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3%E7%AE%A1%E7%90%86%E6%96%87%E4%BB%B6"><span class="toc-text">2.3管理文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E7%9A%84%E7%89%88%E6%9C%AC%E8%AE%B0%E5%BD%95"><span class="toc-text">2.4查看提交的版本记录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5%E5%AE%9A%E5%88%B6git-log"><span class="toc-text">2.5定制git log</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%B0%8F%E6%95%85%E4%BA%8B%E5%AD%A6%E6%93%8D%E4%BD%9C"><span class="toc-text">3.小故事学操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1%E5%BC%80%E5%A7%8B%E9%A1%B9%E7%9B%AE%E5%B7%A5%E7%A8%8B"><span class="toc-text">3.1开始项目工程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2%E4%BF%AE%E6%94%B9%E4%B8%8A%E6%AC%A1%E6%8F%90%E4%BA%A4"><span class="toc-text">3.2修改上次提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3%E5%9B%9E%E5%88%B0%E6%8C%87%E5%AE%9A%E7%89%88%E6%9C%AC"><span class="toc-text">3.3回到指定版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4%E5%88%86%E6%94%AF%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-text">3.4分支的应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5git-rebase"><span class="toc-text">3.5git rebase</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-1rebase%E4%BB%8B%E7%BB%8D"><span class="toc-text">3.5.1rebase介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-2%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E4%B8%80%EF%BC%9A%E5%90%88%E5%B9%B6%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95"><span class="toc-text">3.5.2应用场景一：合并提交记录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-3%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E4%BA%8C%EF%BC%9A%E5%90%88%E5%B9%B6%E5%88%86%E6%94%AF"><span class="toc-text">3.5.3应用场景二：合并分支</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81Git%E2%80%94%E2%80%94%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="toc-text">三、Git——远程仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Github%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">1.Github是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Github%E8%83%BD%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">2.Github能做什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Github%E4%B8%8EGit%E6%9C%89%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB%EF%BC%9F"><span class="toc-text">3.Github与Git有什么关系？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8Github%E6%89%98%E7%AE%A1%E4%BB%A3%E7%A0%81%EF%BC%9F"><span class="toc-text">4.为什么要用Github托管代码？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Github%E7%BB%8F%E5%B8%B8%E6%89%93%E4%B8%8D%E5%BC%80%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="toc-text">5.Github经常打不开怎么办？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1%E6%89%8B%E5%8A%A8%E6%9F%A5%E8%AF%A2%E5%B9%B6%E4%BF%AE%E6%94%B9hosts%E6%96%87%E4%BB%B6"><span class="toc-text">5.1手动查询并修改hosts文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2%E8%BD%AF%E4%BB%B6%E6%9F%A5%E8%AF%A2%E5%B9%B6%E4%BF%AE%E6%94%B9hosts%E6%96%87%E4%BB%B6"><span class="toc-text">5.2软件查询并修改hosts文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8Github%EF%BC%9F"><span class="toc-text">6.怎样使用Github？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1%E6%B3%A8%E5%86%8CGithub%E8%B4%A6%E5%8F%B7"><span class="toc-text">6.1注册Github账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2%E6%96%B0%E5%BB%BA%E4%BB%93%E5%BA%93"><span class="toc-text">6.2新建仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="toc-text">6.3相关命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4%E5%AE%9E%E9%99%85%E6%93%8D%E4%BD%9C"><span class="toc-text">6.4实际操作</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Git%E2%80%94%E2%80%94beyond-compare"><span class="toc-text">四、Git——beyond compare</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1%E7%AE%80%E4%BB%8B"><span class="toc-text">4.1简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE"><span class="toc-text">4.2安装与配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3%E9%85%8D%E7%BD%AE"><span class="toc-text">4.3配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">4.4使用方法</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/9720d703.html" title="【Shell】Shell命令-sed"><img src="/images/dafault-img.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【Shell】Shell命令-sed"/></a><div class="content"><a class="title" href="/post/9720d703.html" title="【Shell】Shell命令-sed">【Shell】Shell命令-sed</a><time datetime="2022-02-21T00:22:02.000Z" title="发表于 2022-02-21 08:22:02">2022-02-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/4bc18fdf.html" title="【Ubuntu】PPA介绍"><img src="/images/dafault-img.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【Ubuntu】PPA介绍"/></a><div class="content"><a class="title" href="/post/4bc18fdf.html" title="【Ubuntu】PPA介绍">【Ubuntu】PPA介绍</a><time datetime="2022-02-19T08:29:55.000Z" title="发表于 2022-02-19 16:29:55">2022-02-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/e0f393dc.html" title="【Shell】LV2-03-Shell脚本编程"><img src="/images/dafault-img.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【Shell】LV2-03-Shell脚本编程"/></a><div class="content"><a class="title" href="/post/e0f393dc.html" title="【Shell】LV2-03-Shell脚本编程">【Shell】LV2-03-Shell脚本编程</a><time datetime="2022-02-18T00:22:02.000Z" title="发表于 2022-02-18 08:22:02">2022-02-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/84847102.html" title="【C】LV1-06-C语言-6指针"><img src="/images/dafault-img.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【C】LV1-06-C语言-6指针"/></a><div class="content"><a class="title" href="/post/84847102.html" title="【C】LV1-06-C语言-6指针">【C】LV1-06-C语言-6指针</a><time datetime="2022-01-15T08:29:55.000Z" title="发表于 2022-01-15 16:29:55">2022-01-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/582937ae.html" title="【C】LV1-05-C语言-5数组与字符串"><img src="/images/dafault-img.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【C】LV1-05-C语言-5数组与字符串"/></a><div class="content"><a class="title" href="/post/582937ae.html" title="【C】LV1-05-C语言-5数组与字符串">【C】LV1-05-C语言-5数组与字符串</a><time datetime="2022-01-14T08:29:55.000Z" title="发表于 2022-01-14 16:29:55">2022-01-14</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2017 - 2022 By qidaink</div><div class="footer_custom_text">但愿人长久，千里共婵娟！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadWaline () {
+  function initWaline () {
+    const waline = new Waline(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://qidaink-blog-comment.vercel.app/',
+      avatar: 'identicon',
+      path: location.pathname,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/',
+      emojiMaps: "",
+      visitor: false
+    }, {"lang":"zh-CN","pageSize":5,"requiredFields":["nick","mail"],"anonymous":null,"placeholder":"(ฅ>ω<*ฅ)欢迎大家评论呀!","avatarCDN":"https://sdn.geekzu.org/avatar/","langMode":{"admin":"可爱的博主","nick":"昵称(必填)","mail":"邮箱(必填)","link":"网址(选填)","sofa":"这里冷冷清清的，快来留下你的脚印吧(ฅ>ω<*ฅ)"}}))
+  }
+
+  if (typeof Waline === 'function') initWaline() 
+  else getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js').then(initWaline)
+}
+
+if ('Waline' === 'Waline' || !false) {
+  if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'qidaink-twikoo-0g5tijvr7bf0f59e',
+      region: ''
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'qidaink-twikoo-0g5tijvr7bf0f59e',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Waline' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="7274703654" data-server="tencent" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted> </div><script defer src = "https://unpkg.com/hexo-qidaink-live2d@1.1.1/live2d-widget/autoload.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="//code.tidio.co/abi9wtgmqlz8ckqgp56ysmntgiob4vfs.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script>
+    // 全局变量声明区域
+    var fdata = {
+      apiurl: 'https://hexo-circle-of-friends-rose.vercel.app/all',
+      initnumber: 20, //【可选】页面初始化展示文章数量
+      stepnumber: 10, //【可选】每次加载增加的篇数
+      error_img: 'https://cdn.jsdelivr.net/npm/akilar-candyassets/image/404.gif' //【可选，头像图片加载失败时的默认头像】
+    }
+    //存入本地存储
+    localStorage.setItem("fdatalist",JSON.stringify(fdata))
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/hexo-filter-fcircle/assets/js/fetch.min.js"></script> <script data-pjax>
+                            if(document.getElementById('recent-posts') && location.pathname =='/'){
+                                var parent = document.getElementById('recent-posts');
+                                var child = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms"></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+                                console.log('swiper-bar加载成功');
+                                parent.insertAdjacentHTML("afterbegin",child);
+                                <!-- Inside a callback or Promise that runs after new DOM content has been inserted -->
+                                <!-- 以下语句是为了适配 pjax，由于插入 html 片段发生在 pjax 初始化之后，所以此链接中的 a 标签跳转会导致全局页面刷新，而以下的 refresh() 函数可以很好的解决这个问题 -->
+                                var newContent = document.querySelector("#recent-posts");
+                                pjax.refresh(newContent);
+                            }
+                        </script>
+                        <!-- Swiper JS -->
+                        <script data-pjax src = "https://unpkg.com/swiper@6.5.9/swiper-bundle.js"></script>
+                        <!-- Initialize Swiper -->
+                        <script data-pjax src = "https://unpkg.com/hexo-qidaink-swiper_bar/src/swiper-init.js"></script>
+                        <style></style><!-- hexo injector body_end end --></body></html>

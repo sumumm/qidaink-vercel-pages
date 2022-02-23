@@ -1,0 +1,749 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>【Python】Python基础3-文件读写 | 云与海</title><meta name="keywords" content="Python"><meta name="author" content="qidaink"><meta name="copyright" content="qidaink"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="摘要：&amp;emsp;&amp;emsp;本文主要是介绍python的文件读写操作。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Python】Python基础3-文件读写">
+<meta property="og:url" content="https://qidaink-vercel-pages.vercel.app/post/a28891a0.html">
+<meta property="og:site_name" content="云与海">
+<meta property="og:description" content="摘要：&amp;emsp;&amp;emsp;本文主要是介绍python的文件读写操作。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qidaink-vercel-pages.vercel.app/images/dafault-img.jpg">
+<meta property="article:published_time" content="2021-04-11T09:28:30.000Z">
+<meta property="article:modified_time" content="2022-02-23T04:18:49.482Z">
+<meta property="article:author" content="qidaink">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qidaink-vercel-pages.vercel.app/images/dafault-img.jpg"><link rel="shortcut icon" href="/images/favicon32x32.ico"><link rel="canonical" href="https://qidaink-vercel-pages.vercel.app/post/a28891a0"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: qidaink","link":"链接: ","source":"来源: 云与海","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"top-center"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-02-23 12:18:49'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><link rel="stylesheet" href="/custom/css/custom.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_2482018_15wgmeyeygw.css"  media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><!-- Link Swiper's CSS -->
+                                              <link rel="stylesheet" href = "https://unpkg.com/swiper@6.5.9/swiper-bundle.css">
+                                              <link rel="stylesheet" href="https://unpkg.com/hexo-qidaink-swiper_bar/src/swiperbar.css">
+                                             <!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/images/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">34</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 云与海</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw far fa-list-alt"></i><span> 文章清单</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw fas fa-user-friends"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/guestbook"><i class="fa-fw fas fa-edit"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-heart"></i><span> 关于我</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/site/"><i class="fa-fw fas fa-atlas"></i><span> 关于本站</span></a></li><li><a class="site-page child" href="/about/mine/"><i class="fa-fw fas fa-fan"></i><span> 关于自己</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/dafault-img.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">云与海</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 云与海</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw far fa-list-alt"></i><span> 文章清单</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw fas fa-user-friends"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/guestbook"><i class="fa-fw fas fa-edit"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-heart"></i><span> 关于我</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/site/"><i class="fa-fw fas fa-atlas"></i><span> 关于本站</span></a></li><li><a class="site-page child" href="/about/mine/"><i class="fa-fw fas fa-fan"></i><span> 关于自己</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【Python】Python基础3-文件读写</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-04-11T09:28:30.000Z" title="发表于 2021-04-11 17:28:30">2021-04-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-02-23T04:18:49.482Z" title="更新于 2022-02-23 12:18:49">2022-02-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/ProgramLanguage/">ProgramLanguage</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【Python】Python基础3-文件读写"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>摘要：<br>&emsp;&emsp;本文主要是介绍<code>python</code>的文件读写操作。</p>
+<span id="more"></span>
+
+<h1 id="一-文件打开与关闭"><a href="#一-文件打开与关闭" class="headerlink" title=" 一.文件打开与关闭"></a><font size=3> 一.文件打开与关闭</font></h1><h2 id="1-文件读写的步骤"><a href="#1-文件读写的步骤" class="headerlink" title="1.文件读写的步骤"></a><font size=3>1.文件读写的步骤</font></h2><ul>
+<li>打开文件，或者新建立一个文件，获取文件描述符</li>
+<li>读/写数据，操作文件描述符</li>
+<li>关闭文件</li>
+</ul>
+<p>&emsp;&emsp;文件读写操作完成后，应该及时关闭。一方面，文件对象会占用操作系统的资源；另外一方面，操作系统对同一时间能打开的文件描述符的数量是有限制的，在<code>Linux</code>操作系统上可以通过<code>ulimit -n </code>来查看这个显示数量。如果不及时关闭文件，还可能会造成数据丢失。</p>
+<h2 id="2-打开文件-open-函数"><a href="#2-打开文件-open-函数" class="headerlink" title="2.打开文件-open()函数"></a><font size=3>2.打开文件-open()函数</font></h2><h3 id="2-1-函数在库中的原型"><a href="#2-1-函数在库中的原型" class="headerlink" title="2.1 函数在库中的原型"></a><font size=3>2.1 函数在库中的原型</font></h3><figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">open</span>(<span class="params">file: <span class="type">Union</span>[<span class="built_in">str</span>, <span class="built_in">bytes</span>, <span class="built_in">int</span>], mode: <span class="built_in">str</span>=..., buffering: <span class="built_in">int</span>=..., encoding: <span class="type">Optional</span>[<span class="built_in">str</span>]=..., errors: <span class="type">Optional</span>[<span class="built_in">str</span>]=..., newline: <span class="type">Optional</span>[<span class="built_in">str</span>]=..., closefd: <span class="built_in">bool</span>=..., opener: <span class="type">Optional</span>[<span class="type">Callable</span>[[<span class="built_in">str</span>, <span class="built_in">int</span>], <span class="built_in">int</span>]]=...</span>)</span></span><br><span class="line"><span class="function">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="function"><span class="title">Open</span> <span class="title">file</span> <span class="title">and</span> <span class="title">return</span> <span class="title">a</span> <span class="title">stream</span>. <span class="title">Raise</span> <span class="title">OSError</span> <span class="title">upon</span> <span class="title">failure</span>.</span></span><br><span class="line"><span class="function"><span class="title">file</span> <span class="title">is</span> <span class="title">either</span> <span class="title">a</span> <span class="title">text</span> <span class="title">or</span> <span class="title">byte</span> <span class="title">string</span> <span class="title">giving</span> <span class="title">the</span> <span class="title">name</span> (<span class="params"><span class="keyword">and</span> the path <span class="keyword">if</span> the file isn<span class="string">&#x27;t in the current working directory) of the file to be opened or an integer file descriptor of the file to be wrapped. (If a file descriptor is given, it is closed when the returned I/O object is closed, unless closefd is set to False.)</span></span></span></span><br><span class="line"><span class="function"><span class="params"><span class="string">mode is an optional string that specifies the mode in which the file is opened. It defaults to &#x27;</span><span class="string">r&#x27; which means open for reading in text mode. Other common values are &#x27;</span>w<span class="string">&#x27; for writing (truncating the file if it</span></span></span></span><br><span class="line"><span class="function"><span class="params"><span class="string">&#x27;</span><span class="string">&#x27;&#x27;</span></span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>参数说明</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>file</td>
+<td align="left">要创建或打开文件的文件名称，该名称要用引号（单引号或双引号都可以）括起来。如果要打开的文件和当前执行的代码文件位于同一目录，则使用文件名即可；否则，此参数需要指定打开文件所在的完整路径。</td>
+</tr>
+<tr>
+<td>mode</td>
+<td align="left">可选参数，用于指定文件的打开模式。如果不写，则默认以只读（r）的模式打开文件。</td>
+</tr>
+<tr>
+<td>buffering</td>
+<td align="left">可选参数，用于指定对文件做读写操作时，是否使用缓冲区。</td>
+</tr>
+<tr>
+<td>encoding</td>
+<td align="left">设定打开文件时所使用的编码格式，不同平台的 <code>ecoding </code>参数值也不同，以 <code>windows </code>为例，其默认为 <code>cp936</code>（实际上就是<code>GBK</code>编码）。</td>
+</tr>
+</tbody></table>
+<ul>
+<li>使用格式如下<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打开一个文件，注意windows下文件路径要用转义符号保留 \ </span></span><br><span class="line">file1 = <span class="built_in">open</span>(<span class="string">&quot;E:\\MyStudy\\VScode\\Python\\files.txt&quot;</span>, <span class="string">&quot;r&quot;</span>)  <span class="comment"># file1：表示要创建的文件对象，它将包含文件的各种信息</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="2-2-文件打开时访问模式（mode参数）"><a href="#2-2-文件打开时访问模式（mode参数）" class="headerlink" title="2.2 文件打开时访问模式（mode参数）"></a><font size=3>2.2 文件打开时访问模式（mode参数）</font></h3><ul>
+<li>访问模式及其说明</li>
+</ul>
+<table><!-- 表格开始 -->
+    <tr><!-- 第1行 -->
+        <td width=200px><!-- 第1列 -->
+        访问模式
+        </td>
+        <td align="center"><!-- 第2列 -->
+        说明
+        </td>
+    </tr>
+    <tr><!-- 第2行 -->
+        <td width=200px><!-- 第1列 -->
+        r
+        </td>
+        <td align="left"><!-- 第2列 -->以只读方式打开文件。文件的指针将会放在文件的开头。这是默认模式。如果文件不存在会报错
+        </td>
+    </tr>
+    <tr><!-- 第3行 -->
+        <td width=200px><!-- 第1列 -->w</td>
+        <td  align="left"><!-- 第2列 -->打开一个文件只用于写入。如果文件存在则将其内容清空，如果文件不存在则创建新文件。</td>
+    </tr>
+    <tr><!-- 第4行 -->
+        <td width=200px><!-- 第1列 -->
+        a
+        </td>
+        <td  align="left"><!-- 第2列 -->打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。也就是说，新的内容将会被写入到已有内容之后。如果该文件不存在，创建新文件进行写入。
+        </td>
+    </tr>
+    <tr><!-- 第5行 -->
+        <td width=200px><!-- 第1列 -->
+        rb
+        </td>
+        <td  align="left"><!-- 第2列 -->
+        以二进制格式打开一个文件用于只读。文件指针将会放在文件的开头。这是默认模式。
+        </td>
+    </tr>
+    <tr><!-- 第6行 -->
+        <td width=200px><!-- 第1列 -->
+        wb
+        </td>
+        <td  align="left"><!-- 第2列 -->以二进制格式打开一个文件只用于写入。如果该文件已存在则将其覆盖。如果该文件不存在，创建新文件。
+        </td>
+    </tr>
+    <tr><!-- 第7行 -->
+        <td width=200px><!-- 第1列 -->
+        ab
+        </td>
+        <td  align="left"><!-- 第2列 -->以二进制格式打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。也就是说，新的内容将会被写入到已有内容之后。如果该文件不存在，创建新文件进行写入。
+        </td>
+    </tr>
+    <tr><!-- 第8行 -->
+        <td width=200px><!-- 第1列 -->
+        r+
+        </td>
+        <td  align="left"><!-- 第2列 -->
+        在r的基础上增加了可写功能。文件指针将会放在文件的开头。
+        如原来文件内容是"hello"，打开文件后写入"abcd"则文件内容会变成"abcdo"。
+        </td>
+    </tr>
+    <tr><!-- 第9行 -->
+        <td width=200px><!-- 第1列 -->
+        w+
+        </td>
+        <td  align="left"><!-- 第2列 -->
+        在w的基础上增加了可读功能。如果该文件已存在则将其覆盖。如果该文件不存在，创建新文件。在打开文件时就会先将文件内容清空。
+        </td>.
+    </tr>
+    <tr><!-- 第10行 -->
+        <td width=200px><!-- 第1列 -->
+        a+
+        </td>
+        <td  align="left"><!-- 第2列 -->
+        在a的基础上增加了可读功能。如果该文件已存在，文件指针将会放在文件的结尾。文件打开时会是追加模式。如果该文件不存在，创建新文件用于读写。a+只能写到文件末尾（无论当前文件指针在哪里）
+        </td>
+    </tr>
+    <tr><!-- 第11行 -->
+        <td width=200px><!-- 第1列 -->
+        rb+
+        </td>
+        <td  align="left"><!-- 第2列 -->
+        以二进制格式打开一个文件用于读写。文件指针将会放在文件的开头。
+        </td>
+    </tr>
+    <tr><!-- 第12行 -->
+        <td width=200px><!-- 第1列 -->
+        wb+
+        </td>
+        <td  align="left"><!-- 第2列 -->
+        以二进制格式打开一个文件用于读写。如果该文件已存在则将其覆盖。如果该文件不存在，创建新文件。
+        </td>
+    <tr><!-- 第13行 -->
+        <td width=200px><!-- 第1列 -->
+        ab+
+        </td>
+        <td  align="left"><!-- 第2列 -->
+        以二进制格式打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。如果该文件不存在，创建新文件用于读写。
+        </td>
+    </tr>
+</table>
+
+
+<h2 id="3-关闭文件-close-函数"><a href="#3-关闭文件-close-函数" class="headerlink" title="3.关闭文件-close()函数"></a><font size=3>3.关闭文件-close()函数</font></h2><ul>
+<li>函数原型</li>
+</ul>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">close</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>说明<br>&emsp;&emsp;<code>close() </code>方法用于关闭一个已打开的文件。关闭后的文件不能再进行读写操作， 否则会触发<code>ValueError</code>错误。</li>
+<li>使用格式</li>
+</ul>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 上边以file1作为文件对象打开了一个文件</span></span><br><span class="line">flie1.close()  <span class="comment"># 关闭刚才打开的文件</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="二-文件相关的函数"><a href="#二-文件相关的函数" class="headerlink" title="二.文件相关的函数"></a><font size=3>二.文件相关的函数</font></h1><p>&emsp;&emsp;以下出现的指针，都表示文件读取位置，因为在C语言中叫习惯了，而且这个个人感觉比较形象，所以下边就这样用了。</p>
+<h2 id="1-写数据write"><a href="#1-写数据write" class="headerlink" title="1.写数据write()"></a><font size=3>1.写数据write()</font></h2><h3 id="1-1-函数说明"><a href="#1-1-函数说明" class="headerlink" title="1.1 函数说明"></a><font size=3>1.1 函数说明</font></h3><ul>
+<li>函数原型</li>
+</ul>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">write</span>(<span class="params">self, s: AnyStr</span>) -&gt; <span class="built_in">int</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用格式</li>
+</ul>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file1.write(<span class="string">&quot;string&quot;</span>)  <span class="comment"># 打开文件之后，将字符串写入文件。</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;注意，在使用该函数的时候，打开的文件必须具有写的权限。</p>
+<h3 id="1-2-函数使用实例"><a href="#1-2-函数使用实例" class="headerlink" title="1.2 函数使用实例"></a><font size=3>1.2 函数使用实例</font></h3><p>&emsp;&emsp;提前创建文件，并写入数据，以区分不同写入模式的时候，对文件的影响，由于以<code>w</code>模式打开文件，会直接清除所有数据，所以将其作为最后一个实例。</p>
+<ul>
+<li>初始文件内容如下</li>
+</ul>
+<div align="center">
+    <img src="https://gitee.com/qidaink/qidaink-images/raw/master/Python/019file1.png" height="100%" width="100%">
+</div>
+
+<ul>
+<li><p><code>r+</code>打开文件后写入</p>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">file1 = <span class="built_in">open</span>(<span class="string">&quot;E:\\MyStudy\\VScode\\Python\\files.txt&quot;</span>, <span class="string">&quot;r+&quot;</span>)  <span class="comment"># r+格式打开文件</span></span><br><span class="line">file1.write(<span class="string">&quot;Hello World&quot;</span>)  <span class="comment"># 写入数据</span></span><br><span class="line">file1.close()  <span class="comment"># 关闭文件</span></span><br></pre></td></tr></table></figure>
+<div align="center">
+  <img src="https://gitee.com/qidaink/qidaink-images/raw/master/Python/019file2.png" height="100%" width="100%">
+</div></li>
+<li><p><code>a+</code>打开文件后写入</p>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">file1 = <span class="built_in">open</span>(<span class="string">&quot;E:\\MyStudy\\VScode\\Python\\files.txt&quot;</span>, <span class="string">&quot;a+&quot;</span>)  <span class="comment"># a+格式打开文件</span></span><br><span class="line">file1.write(<span class="string">&quot;Hello World&quot;</span>)  <span class="comment"># 写入数据</span></span><br><span class="line">file1.close()  <span class="comment"># 关闭文件</span></span><br></pre></td></tr></table></figure>
+<div align="center">
+  <img src="https://gitee.com/qidaink/qidaink-images/raw/master/Python/019file3.png" height="100%" width="100%">
+</div></li>
+<li><p><code>w+</code>打开文件后写入</p>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">file1 = <span class="built_in">open</span>(<span class="string">&quot;E:\\MyStudy\\VScode\\Python\\files.txt&quot;</span>, <span class="string">&quot;w+&quot;</span>)  <span class="comment"># w+格式打开文件</span></span><br><span class="line">file1.write(<span class="string">&quot;Hello World&quot;</span>)  <span class="comment"># 写入数据</span></span><br><span class="line">file1.close()  <span class="comment"># 关闭文件</span></span><br></pre></td></tr></table></figure>
+<div align="center">
+  <img src="https://gitee.com/qidaink/qidaink-images/raw/master/Python/019file4.png" height="100%" width="100%">
+</div></li>
+<li><p>总结<br>&emsp;&emsp;由上述三个例子可以看出三者区别，<code>r+</code>打开，会将指针放在开头，向后覆盖数据，<code>a+</code>会将指针放在末尾，从末尾添加数据，而<code>w+</code>打开，直接先清除所有数据，再从开头写入数据。</p>
+</li>
+</ul>
+<h2 id="2-读文件函数read"><a href="#2-读文件函数read" class="headerlink" title="2.读文件函数read()"></a><font size=3>2.读文件函数read()</font></h2><h3 id="2-1-函数说明"><a href="#2-1-函数说明" class="headerlink" title="2.1 函数说明"></a><font size=3>2.1 函数说明</font></h3><ul>
+<li>函数原型</li>
+</ul>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read</span>(<span class="params">self, n: <span class="built_in">int</span> = -<span class="number">1</span></span>) -&gt; AnyStr:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用格式</li>
+</ul>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file1.read(num)  <span class="comment"># 以读的权限打开文件后，对文件读取，num为整型数字，意义为读取字节数</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;函数的参数为整型，若不写，则默认读取文件中所有数据，返回值为读取到的数据，为字符串类型。</p>
+<h3 id="2-2-函数使用实例"><a href="#2-2-函数使用实例" class="headerlink" title="2.2 函数使用实例"></a><font size=3>2.2 函数使用实例</font></h3><ul>
+<li>文件中原始数据如下</li>
+</ul>
+<div align="center">
+    <img src="https://gitee.com/qidaink/qidaink-images/raw/master/Python/019file5.png" height="100%" width="100%">
+</div>
+
+<ul>
+<li>读取全部数据</li>
+</ul>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">file1 = <span class="built_in">open</span>(<span class="string">&quot;E:\\MyStudy\\VScode\\Python\\files.txt&quot;</span>, <span class="string">&quot;r&quot;</span>)  <span class="comment"># r格式打开文件</span></span><br><span class="line">data = file1.read()  <span class="comment"># 读取数据</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(data))    <span class="comment"># 打印读取的数据类型</span></span><br><span class="line"><span class="built_in">print</span>(data)          <span class="comment"># 打印读取的数据</span></span><br><span class="line">file1.close()        <span class="comment"># 关闭文件</span></span><br></pre></td></tr></table></figure>
+
+<div align="center">
+    <img src="https://gitee.com/qidaink/qidaink-images/raw/master/Python/019file6.png" height="100%" width="100%">
+</div>
+
+<ul>
+<li>读取固定字节数据</li>
+</ul>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">file1 = <span class="built_in">open</span>(<span class="string">&quot;E:\\MyStudy\\VScode\\Python\\files.txt&quot;</span>, <span class="string">&quot;r&quot;</span>)  <span class="comment"># r格式打开文件</span></span><br><span class="line">data = file1.read(<span class="number">15</span>)  <span class="comment"># 读取15字节数据</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(data))      <span class="comment"># 打印读取的数据类型</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(data))       <span class="comment"># 打印读取数据的长度</span></span><br><span class="line"><span class="built_in">print</span>(data)            <span class="comment"># 打印读取的数据</span></span><br><span class="line">file1.close()          <span class="comment"># 关闭文件</span></span><br></pre></td></tr></table></figure>
+
+<div align="center">
+    <img src="https://gitee.com/qidaink/qidaink-images/raw/master/Python/019file7.png" height="100%" width="100%">
+</div>
+
+<p>&emsp;&emsp;由打印数据可得，一共读取了12个字符，但是实际长度有15，原因在于读取了3个换行符号。</p>
+<h2 id="3-读文件函数readline"><a href="#3-读文件函数readline" class="headerlink" title="3.读文件函数readline()"></a><font size=3>3.读文件函数readline()</font></h2><h3 id="3-1-函数说明"><a href="#3-1-函数说明" class="headerlink" title="3.1 函数说明"></a><font size=3>3.1 函数说明</font></h3><ul>
+<li>函数原型</li>
+</ul>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readline</span>(<span class="params">self, limit: <span class="built_in">int</span> = -<span class="number">1</span></span>) -&gt; AnyStr:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>函数使用格式</li>
+</ul>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data = file1.readline(num)  <span class="comment"># 读取一行数据</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>参数说明</li>
+</ul>
+<p><code>num</code>：函数参数，该参数不写，表示读取整行数据，并把文件指针移到下一行开头，若指定了数字，则该数字必须为整数，且把<code>num</code>个字节数据当作一行，把指针移到<code>num</code>后面的位置，下一次便从这里开始读取，这样就会出现一行当作多行使用。<br><code>data</code>：读取到的数据存放的变量名，该数据会是一个字符串类型的数据。</p>
+<h3 id="3-2-函数使用实例"><a href="#3-2-函数使用实例" class="headerlink" title="3.2 函数使用实例"></a><font size=3>3.2 函数使用实例</font></h3><ul>
+<li>文件中原始数据如下</li>
+</ul>
+<div align="center">
+    <img src="https://gitee.com/qidaink/qidaink-images/raw/master/Python/019file8.png" height="100%" width="100%">
+</div>
+
+<ul>
+<li>无参数，直接读取一整行</li>
+</ul>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">file1 = <span class="built_in">open</span>(<span class="string">&quot;E:\\MyStudy\\VScode\\Python\\files.txt&quot;</span>, <span class="string">&quot;r&quot;</span>)  <span class="comment"># r格式打开文件</span></span><br><span class="line">data1 = file1.readline()  <span class="comment"># 读取第一行</span></span><br><span class="line">data2 = file1.readline()  <span class="comment"># 读取第二行</span></span><br><span class="line">data3 = file1.readline()  <span class="comment"># 读取第三行</span></span><br><span class="line">data4 = file1.readline()  <span class="comment"># 读取第四行</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(data1))      <span class="comment"># 打印读取的数据类型</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(data1))       <span class="comment"># 打印读取数据的长度</span></span><br><span class="line"><span class="built_in">print</span>(data1)            <span class="comment"># 打印读取的数据</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(data2))      <span class="comment"># 打印读取的数据类型</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(data2))       <span class="comment"># 打印读取数据的长度</span></span><br><span class="line"><span class="built_in">print</span>(data2)            <span class="comment"># 打印读取的数据</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(data3))      <span class="comment"># 打印读取的数据类型</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(data3))       <span class="comment"># 打印读取数据的长度</span></span><br><span class="line"><span class="built_in">print</span>(data3)            <span class="comment"># 打印读取的数据</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(data4))      <span class="comment"># 打印读取的数据类型</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(data4))       <span class="comment"># 打印读取数据的长度</span></span><br><span class="line"><span class="built_in">print</span>(data4)            <span class="comment"># 打印读取的数据</span></span><br><span class="line">file1.close()           <span class="comment"># 关闭文件</span></span><br></pre></td></tr></table></figure>
+<div align="center">
+    <img src="https://gitee.com/qidaink/qidaink-images/raw/master/Python/019file9.png" height="100%" width="100%">
+</div>
+
+<ul>
+<li>有参数读取</li>
+</ul>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">file1 = <span class="built_in">open</span>(<span class="string">&quot;E:\\MyStudy\\VScode\\Python\\files.txt&quot;</span>, <span class="string">&quot;r&quot;</span>)  <span class="comment"># r格式打开文件</span></span><br><span class="line">data1 = file1.readline(<span class="number">10</span>)  <span class="comment"># 读取第一行</span></span><br><span class="line">data2 = file1.readline(<span class="number">8</span>)   <span class="comment"># 读取第二行</span></span><br><span class="line">data3 = file1.readline()    <span class="comment"># 读取第三行</span></span><br><span class="line">data4 = file1.readline()    <span class="comment"># 读取第四行</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(data1))      <span class="comment"># 打印读取的数据类型</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(data1))       <span class="comment"># 打印读取数据的长度</span></span><br><span class="line"><span class="built_in">print</span>(data1)            <span class="comment"># 打印读取的数据</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(data2))      <span class="comment"># 打印读取的数据类型</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(data2))       <span class="comment"># 打印读取数据的长度</span></span><br><span class="line"><span class="built_in">print</span>(data2)            <span class="comment"># 打印读取的数据</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(data3))      <span class="comment"># 打印读取的数据类型</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(data3))       <span class="comment"># 打印读取数据的长度</span></span><br><span class="line"><span class="built_in">print</span>(data3)            <span class="comment"># 打印读取的数据</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(data4))      <span class="comment"># 打印读取的数据类型</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(data4))       <span class="comment"># 打印读取数据的长度</span></span><br><span class="line"><span class="built_in">print</span>(data4)            <span class="comment"># 打印读取的数据</span></span><br><span class="line">file1.close()           <span class="comment"># 关闭文件</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<div align="center">
+    <img src="https://gitee.com/qidaink/qidaink-images/raw/master/Python/019file10.png" height="100%" width="100%">
+</div>
+&emsp;&emsp;由打印数据可知，最后第一行数据被进行了拆分，只读取了相应字节数据。
+
+<h2 id="4-读文件函数readlines"><a href="#4-读文件函数readlines" class="headerlink" title="4.读文件函数readlines()"></a><font size=3>4.读文件函数readlines()</font></h2><h3 id="4-1-函数说明"><a href="#4-1-函数说明" class="headerlink" title="4.1 函数说明"></a><font size=3>4.1 函数说明</font></h3><ul>
+<li>函数原型</li>
+</ul>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readlines</span>(<span class="params">self, hint: <span class="built_in">int</span> = -<span class="number">1</span></span>) -&gt; <span class="type">List</span>[AnyStr]:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>函数使用格式</li>
+</ul>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data = file1.readlines(num)  <span class="comment"># 读取文件中所有数据，返回值为列表，num一般不写，写了也没太大用处</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>参数说明</li>
+</ul>
+<p><code>data</code>：读取到的数据存放的变量名，该数据会是一个列表类型的数据，该函数读取文件中的所有行，每行的数据都是字符串，这些字符串又被组成一个列表。<br><code>num</code>：函数参数，该参数不写或者<code>num=0</code>，表示按行读取文件中所有数据，包含换行符，最后再将所有数据整合成列表，当<code>num</code>写了，且不为0时，该函数功能与<code>readline</code>一致，只读取一行，且将指针移到下一行开头，但是不同的是，该函数输出的是列表类型数据。</p>
+<h3 id="4-2-函数使用实例"><a href="#4-2-函数使用实例" class="headerlink" title="4.2 函数使用实例"></a><font size=3>4.2 函数使用实例</font></h3><ul>
+<li>文件中原始数据如下</li>
+</ul>
+<div align="center">
+    <img src="https://gitee.com/qidaink/qidaink-images/raw/master/Python/019file11.png" height="100%" width="100%">
+</div>
+
+<ul>
+<li>无参数，读取所有数据</li>
+</ul>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">file1 = <span class="built_in">open</span>(<span class="string">&quot;E:\\MyStudy\\VScode\\Python\\files.txt&quot;</span>, <span class="string">&quot;r&quot;</span>)  <span class="comment"># r格式打开文件</span></span><br><span class="line">data1 = file1.readlines()  <span class="comment"># 第一次读取</span></span><br><span class="line">data2 = file1.readlines()  <span class="comment"># 第二次读取</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(data1))      <span class="comment"># 打印读取的数据类型</span></span><br><span class="line"><span class="built_in">print</span>(data1)            <span class="comment"># 打印读取的数据</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(data2))      <span class="comment"># 打印读取的数据类型</span></span><br><span class="line"><span class="built_in">print</span>(data2)            <span class="comment"># 打印读取的数据</span></span><br><span class="line">file1.close()           <span class="comment"># 关闭文件</span></span><br></pre></td></tr></table></figure>
+
+<div align="center">
+    <img src="https://gitee.com/qidaink/qidaink-images/raw/master/Python/019file12.png" height="100%" width="100%">
+</div>
+
+<p>&emsp;&emsp;第二次读取输出列表为空，说明第一次读取完毕后，函数将文件指针移到了结尾。</p>
+<ul>
+<li>有参数，0与非0的区别</li>
+</ul>
+<p>&emsp;&emsp;为节省空间，不做重复工作，这里只做了一个。</p>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">file1 = <span class="built_in">open</span>(<span class="string">&quot;E:\\MyStudy\\VScode\\Python\\files.txt&quot;</span>, <span class="string">&quot;r&quot;</span>)  <span class="comment"># r格式打开文件</span></span><br><span class="line">data1 = file1.readlines(<span class="number">3</span>)  <span class="comment"># 第一次读取</span></span><br><span class="line">data2 = file1.readlines(<span class="number">0</span>)  <span class="comment"># 第二次读取</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(data1))      <span class="comment"># 打印读取的数据类型</span></span><br><span class="line"><span class="built_in">print</span>(data1)            <span class="comment"># 打印读取的数据</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(data2))      <span class="comment"># 打印读取的数据类型</span></span><br><span class="line"><span class="built_in">print</span>(data2)            <span class="comment"># 打印读取的数据</span></span><br><span class="line">file1.close()           <span class="comment"># 关闭文件</span></span><br></pre></td></tr></table></figure>
+
+<div align="center">
+    <img src="https://gitee.com/qidaink/qidaink-images/raw/master/Python/019file13.png" height="100%" width="100%">
+</div>
+&emsp;&emsp;第一次参数为3，只读取了一行，第二次参数为0，读取了剩下所有数据。
+
+<h2 id="5-文件读取位置函数tell"><a href="#5-文件读取位置函数tell" class="headerlink" title="5.文件读取位置函数tell()"></a><font size=3>5.文件读取位置函数tell()</font></h2><h3 id="5-1-函数说明"><a href="#5-1-函数说明" class="headerlink" title="5.1 函数说明"></a><font size=3>5.1 函数说明</font></h3><ul>
+<li>函数原型</li>
+</ul>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tell</span>(<span class="params">self</span>) -&gt; <span class="built_in">int</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>函数使用格式</li>
+</ul>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file1.tell() <span class="comment"># 读取文件当前读写位置，返回值为int型</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>注意：该函数用于<code>readlines()</code>函数后的时候，<code>readlines()</code>不能有参数，参数最多只能是0，否则出错。</li>
+</ul>
+<h3 id="5-2-函数使用实例"><a href="#5-2-函数使用实例" class="headerlink" title="5.2 函数使用实例"></a><font size=3>5.2 函数使用实例</font></h3><ul>
+<li>文件中原始数据如下</li>
+</ul>
+<div align="center">
+    <img src="https://gitee.com/qidaink/qidaink-images/raw/master/Python/019file14.png" height="100%" width="100%">
+</div>
+
+<ul>
+<li>无参数，读取所有数据</li>
+</ul>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">file1 = <span class="built_in">open</span>(<span class="string">&quot;E:\\MyStudy\\VScode\\Python\\files.txt&quot;</span>, <span class="string">&quot;r&quot;</span>)  <span class="comment"># r格式打开文件</span></span><br><span class="line">data1 = file1.read(<span class="number">3</span>)  <span class="comment"># 第一次读取3个字节数据</span></span><br><span class="line"><span class="built_in">print</span>(file1.tell())    <span class="comment"># 打印文件读写位置</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(file1.tell()))  <span class="comment"># 打印返回值类型</span></span><br><span class="line"><span class="built_in">print</span>(data1)               <span class="comment"># 打印读取的数据</span></span><br><span class="line"></span><br><span class="line">data2 = file1.readline()  <span class="comment"># 第二次读取一行</span></span><br><span class="line"><span class="built_in">print</span>(file1.tell())</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(file1.tell()))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(data2))         <span class="comment"># 打印读取的数据长度</span></span><br><span class="line"><span class="built_in">print</span>(data2)              <span class="comment"># 打印读取的数据</span></span><br><span class="line"></span><br><span class="line">file1.close()             <span class="comment"># 关闭文件</span></span><br></pre></td></tr></table></figure>
+
+<div align="center">
+    <img src="https://gitee.com/qidaink/qidaink-images/raw/master/Python/019file15.png" height="100%" width="100%">
+</div>
+
+<h2 id="6-设置文件读取位置函数seek"><a href="#6-设置文件读取位置函数seek" class="headerlink" title="6.设置文件读取位置函数seek()"></a><font size=3>6.设置文件读取位置函数seek()</font></h2><h3 id="6-1-函数说明"><a href="#6-1-函数说明" class="headerlink" title="6.1 函数说明"></a><font size=3>6.1 函数说明</font></h3><ul>
+<li>函数原型</li>
+</ul>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">seek</span>(<span class="params">self, offset: <span class="built_in">int</span>, whence: <span class="built_in">int</span> = <span class="number">0</span></span>) -&gt; <span class="built_in">int</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>函数使用格式</li>
+</ul>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file1.seek(offset, <span class="keyword">from</span>) <span class="comment"># 设置文件指针的读取位置</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>参数说明</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>offset</td>
+<td>偏移量</td>
+</tr>
+<tr>
+<td>from</td>
+<td>方向:<br>0:表示文件开头；1:表示当前位置;2:表示文件末尾<br>(注意次参数为2的时候，偏移量只能为负数或者0，在python3中该函数不支持复数，要注意)</td>
+</tr>
+</tbody></table>
+<h3 id="6-2-函数使用实例"><a href="#6-2-函数使用实例" class="headerlink" title="6.2 函数使用实例"></a><font size=3>6.2 函数使用实例</font></h3><ul>
+<li>文件中原始数据如下</li>
+</ul>
+<div align="center">
+    <img src="https://gitee.com/qidaink/qidaink-images/raw/master/Python/019file16.png" height="100%" width="100%">
+</div>
+
+<ul>
+<li>设定位置读取</li>
+</ul>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">file1 = <span class="built_in">open</span>(<span class="string">&quot;E:\\MyStudy\\VScode\\Python\\files.txt&quot;</span>, <span class="string">&quot;r&quot;</span>)  <span class="comment"># r格式打开文件</span></span><br><span class="line">file1.seek(<span class="number">5</span>, <span class="number">0</span>)      <span class="comment"># 设置位置为开头偏移5字节</span></span><br><span class="line"><span class="built_in">print</span>(file1.tell())   <span class="comment"># 打印当前文件读写位置</span></span><br><span class="line">data = file1.read(<span class="number">3</span>)  <span class="comment"># 读取三个字节数据</span></span><br><span class="line"><span class="built_in">print</span>(data)</span><br><span class="line"><span class="built_in">print</span>(file1.tell())   <span class="comment"># 打印当前文件读写位置</span></span><br><span class="line">file1.close()         <span class="comment"># 关闭文件</span></span><br></pre></td></tr></table></figure>
+
+<div align="center">
+    <img src="https://gitee.com/qidaink/qidaink-images/raw/master/Python/019file17.png" height="100%" width="100%">
+</div>
+
+<ul>
+<li>负数参数</li>
+</ul>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">file1 = <span class="built_in">open</span>(<span class="string">&quot;E:\\MyStudy\\VScode\\Python\\files.txt&quot;</span>, <span class="string">&quot;r&quot;</span>)  <span class="comment"># r格式打开文件</span></span><br><span class="line">file1.seek(-<span class="number">5</span>, <span class="number">2</span>)     <span class="comment"># 设置位置为结尾向左5字节</span></span><br><span class="line"><span class="built_in">print</span>(file1.tell())   <span class="comment"># 打印当前文件读写位置</span></span><br><span class="line">data = file1.read(<span class="number">3</span>)  <span class="comment"># 读取三个字节数据</span></span><br><span class="line"><span class="built_in">print</span>(data)</span><br><span class="line"><span class="built_in">print</span>(file1.tell())   <span class="comment"># 打印当前文件读写位置</span></span><br><span class="line">file1.close()         <span class="comment"># 关闭文件</span></span><br></pre></td></tr></table></figure>
+
+<div align="center">
+    <img src="https://gitee.com/qidaink/qidaink-images/raw/master/Python/019file18.png" height="100%" width="100%">
+</div>
+
+<p>&emsp;&emsp;<i class="fas fa-fan fa-spin" style="color: #FF1493; font-size: 1.3rem"></i>未完，待续。。。。。。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">qidaink</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://qidaink-vercel-pages.vercel.app/post/a28891a0.html">https://qidaink-vercel-pages.vercel.app/post/a28891a0.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://qidaink-vercel-pages.vercel.app" target="_blank">云与海</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python/">Python</a></div><div class="post_share"><div class="social-share" data-image="/images/dafault-img.jpg" data-sites="wechat,qq,weibo"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/myqq.jpg" target="_blank"><img class="post-qr-code-img" src="/images/myqq.jpg" alt="我的QQ"/></a><div class="post-qr-code-desc">我的QQ</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/12dbbafd.html"><img class="prev-cover" src="/images/dafault-img.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【NexT】icon-图标库的使用</div></div></a></div><div class="next-post pull-right"><a href="/post/96dc4647.html"><img class="next-cover" src="/images/dafault-img.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【Python】Python基础2-输入输出</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/post/e938652.html" title="【Python】Python基础1-OS模块函数"><img class="cover" src="/images/dafault-img.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-11</div><div class="title">【Python】Python基础1-OS模块函数</div></div></a></div><div><a href="/post/96dc4647.html" title="【Python】Python基础2-输入输出"><img class="cover" src="/images/dafault-img.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-11</div><div class="title">【Python】Python基础2-输入输出</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Waline</span><span class="switch-btn"></span><span class="second-comment">Twikoo</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">qidaink</div><div class="author-info__description">但愿人长久，千里共婵娟</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">34</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/qidaink"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/qidaink" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/qq_38231279" target="_blank" title="CSDN"><i class="fas fa-copyright"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到云与海的博客！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80-%E6%96%87%E4%BB%B6%E6%89%93%E5%BC%80%E4%B8%8E%E5%85%B3%E9%97%AD"><span class="toc-text"> 一.文件打开与关闭</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="toc-text">1.文件读写的步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6-open-%E5%87%BD%E6%95%B0"><span class="toc-text">2.打开文件-open()函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%87%BD%E6%95%B0%E5%9C%A8%E5%BA%93%E4%B8%AD%E7%9A%84%E5%8E%9F%E5%9E%8B"><span class="toc-text">2.1 函数在库中的原型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E6%96%87%E4%BB%B6%E6%89%93%E5%BC%80%E6%97%B6%E8%AE%BF%E9%97%AE%E6%A8%A1%E5%BC%8F%EF%BC%88mode%E5%8F%82%E6%95%B0%EF%BC%89"><span class="toc-text">2.2 文件打开时访问模式（mode参数）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%85%B3%E9%97%AD%E6%96%87%E4%BB%B6-close-%E5%87%BD%E6%95%B0"><span class="toc-text">3.关闭文件-close()函数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C-%E6%96%87%E4%BB%B6%E7%9B%B8%E5%85%B3%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-text">二.文件相关的函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%86%99%E6%95%B0%E6%8D%AEwrite"><span class="toc-text">1.写数据write()</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%87%BD%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="toc-text">1.1 函数说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E5%AE%9E%E4%BE%8B"><span class="toc-text">1.2 函数使用实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%AF%BB%E6%96%87%E4%BB%B6%E5%87%BD%E6%95%B0read"><span class="toc-text">2.读文件函数read()</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%87%BD%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="toc-text">2.1 函数说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E5%AE%9E%E4%BE%8B"><span class="toc-text">2.2 函数使用实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%AF%BB%E6%96%87%E4%BB%B6%E5%87%BD%E6%95%B0readline"><span class="toc-text">3.读文件函数readline()</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%87%BD%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="toc-text">3.1 函数说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E5%AE%9E%E4%BE%8B"><span class="toc-text">3.2 函数使用实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%AF%BB%E6%96%87%E4%BB%B6%E5%87%BD%E6%95%B0readlines"><span class="toc-text">4.读文件函数readlines()</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%87%BD%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="toc-text">4.1 函数说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E5%AE%9E%E4%BE%8B"><span class="toc-text">4.2 函数使用实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E4%BD%8D%E7%BD%AE%E5%87%BD%E6%95%B0tell"><span class="toc-text">5.文件读取位置函数tell()</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E5%87%BD%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="toc-text">5.1 函数说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E5%AE%9E%E4%BE%8B"><span class="toc-text">5.2 函数使用实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E8%AE%BE%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E4%BD%8D%E7%BD%AE%E5%87%BD%E6%95%B0seek"><span class="toc-text">6.设置文件读取位置函数seek()</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E5%87%BD%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="toc-text">6.1 函数说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E5%AE%9E%E4%BE%8B"><span class="toc-text">6.2 函数使用实例</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/9720d703.html" title="【Shell】Shell命令-sed"><img src="/images/dafault-img.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【Shell】Shell命令-sed"/></a><div class="content"><a class="title" href="/post/9720d703.html" title="【Shell】Shell命令-sed">【Shell】Shell命令-sed</a><time datetime="2022-02-21T00:22:02.000Z" title="发表于 2022-02-21 08:22:02">2022-02-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/4bc18fdf.html" title="【Ubuntu】PPA介绍"><img src="/images/dafault-img.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【Ubuntu】PPA介绍"/></a><div class="content"><a class="title" href="/post/4bc18fdf.html" title="【Ubuntu】PPA介绍">【Ubuntu】PPA介绍</a><time datetime="2022-02-19T08:29:55.000Z" title="发表于 2022-02-19 16:29:55">2022-02-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/e0f393dc.html" title="【Shell】LV2-03-Shell脚本编程"><img src="/images/dafault-img.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【Shell】LV2-03-Shell脚本编程"/></a><div class="content"><a class="title" href="/post/e0f393dc.html" title="【Shell】LV2-03-Shell脚本编程">【Shell】LV2-03-Shell脚本编程</a><time datetime="2022-02-18T00:22:02.000Z" title="发表于 2022-02-18 08:22:02">2022-02-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/84847102.html" title="【C】LV1-06-C语言-6指针"><img src="/images/dafault-img.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【C】LV1-06-C语言-6指针"/></a><div class="content"><a class="title" href="/post/84847102.html" title="【C】LV1-06-C语言-6指针">【C】LV1-06-C语言-6指针</a><time datetime="2022-01-15T08:29:55.000Z" title="发表于 2022-01-15 16:29:55">2022-01-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/582937ae.html" title="【C】LV1-05-C语言-5数组与字符串"><img src="/images/dafault-img.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【C】LV1-05-C语言-5数组与字符串"/></a><div class="content"><a class="title" href="/post/582937ae.html" title="【C】LV1-05-C语言-5数组与字符串">【C】LV1-05-C语言-5数组与字符串</a><time datetime="2022-01-14T08:29:55.000Z" title="发表于 2022-01-14 16:29:55">2022-01-14</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2017 - 2022 By qidaink</div><div class="footer_custom_text">但愿人长久，千里共婵娟！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadWaline () {
+  function initWaline () {
+    const waline = new Waline(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://qidaink-blog-comment.vercel.app/',
+      avatar: 'identicon',
+      path: location.pathname,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/',
+      emojiMaps: "",
+      visitor: false
+    }, {"lang":"zh-CN","pageSize":5,"requiredFields":["nick","mail"],"anonymous":null,"placeholder":"(ฅ>ω<*ฅ)欢迎大家评论呀!","avatarCDN":"https://sdn.geekzu.org/avatar/","langMode":{"admin":"可爱的博主","nick":"昵称(必填)","mail":"邮箱(必填)","link":"网址(选填)","sofa":"这里冷冷清清的，快来留下你的脚印吧(ฅ>ω<*ฅ)"}}))
+  }
+
+  if (typeof Waline === 'function') initWaline() 
+  else getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js').then(initWaline)
+}
+
+if ('Waline' === 'Waline' || !false) {
+  if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'qidaink-twikoo-0g5tijvr7bf0f59e',
+      region: ''
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'qidaink-twikoo-0g5tijvr7bf0f59e',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Waline' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="7274703654" data-server="tencent" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted> </div><script defer src = "https://unpkg.com/hexo-qidaink-live2d@1.1.1/live2d-widget/autoload.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="//code.tidio.co/abi9wtgmqlz8ckqgp56ysmntgiob4vfs.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script>
+    // 全局变量声明区域
+    var fdata = {
+      apiurl: 'https://hexo-circle-of-friends-rose.vercel.app/all',
+      initnumber: 20, //【可选】页面初始化展示文章数量
+      stepnumber: 10, //【可选】每次加载增加的篇数
+      error_img: 'https://cdn.jsdelivr.net/npm/akilar-candyassets/image/404.gif' //【可选，头像图片加载失败时的默认头像】
+    }
+    //存入本地存储
+    localStorage.setItem("fdatalist",JSON.stringify(fdata))
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/hexo-filter-fcircle/assets/js/fetch.min.js"></script> <script data-pjax>
+                            if(document.getElementById('recent-posts') && location.pathname =='/'){
+                                var parent = document.getElementById('recent-posts');
+                                var child = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms"></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+                                console.log('swiper-bar加载成功');
+                                parent.insertAdjacentHTML("afterbegin",child);
+                                <!-- Inside a callback or Promise that runs after new DOM content has been inserted -->
+                                <!-- 以下语句是为了适配 pjax，由于插入 html 片段发生在 pjax 初始化之后，所以此链接中的 a 标签跳转会导致全局页面刷新，而以下的 refresh() 函数可以很好的解决这个问题 -->
+                                var newContent = document.querySelector("#recent-posts");
+                                pjax.refresh(newContent);
+                            }
+                        </script>
+                        <!-- Swiper JS -->
+                        <script data-pjax src = "https://unpkg.com/swiper@6.5.9/swiper-bundle.js"></script>
+                        <!-- Initialize Swiper -->
+                        <script data-pjax src = "https://unpkg.com/hexo-qidaink-swiper_bar/src/swiper-init.js"></script>
+                        <style></style><!-- hexo injector body_end end --></body></html>
